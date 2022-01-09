@@ -36,29 +36,30 @@
 		`Virtual file system documenting kernel and process status as text files` 
 
 ## Basics commands
-https://explainshell.com/
-man ls
-ls --help
+>https://explainshell.com/
+	
+	man ls
+	ls --help
 
-ls
-cd
-pwd
-touch
-echo
-clear
-exit
+	ls
+	cd
+	pwd
+	touch
+	echo
+	clear
+	exit
 
 ## Environment vars
-EDITOR
-HOME
-LONGNAME
-MAIL
-OLDPWD
-PATH
-PAGER
-PS1
-PWD
-USER
+	EDITOR
+	HOME
+	LONGNAME
+	MAIL
+	OLDPWD
+	PATH
+	PAGER
+	PS1
+	PWD
+	USER
 
 ## Directories
 
@@ -196,8 +197,8 @@ USER
 
 > #### Nano
 
-nano
-nano test.txt
+	nano
+	nano test.txt
 
 |Keys				 		 |Explanation 							             |
 |----------------------------|---------------------------------------------------|
@@ -238,8 +239,8 @@ nano test.txt
 	
 > #### Vi		
 
-vi
-vi test.txt
+	vi
+	vi test.txt
 
 |Keys				  |Explanation 							  |
 |---------------------|---------------------------------------|
