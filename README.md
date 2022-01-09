@@ -199,42 +199,42 @@ USER
 nano
 nano test.txt
 
-|Keys				 |Explanation 							             |
-|--------------------|---------------------------------------------------|
-|^G    (F1)      	 |Display this help text							 |
-|^X    (F2)      	 |Close the current file buffer / Exit from nano	 |
-|^O    (F3)    		 |Write the current file to disk					 |
-|^R    (F5)      	 |Insert another file into the current one			 |
-|^W    (F6)      	 |Search forward for a string or a regular expression|
-|^\    (M-R)     	 |Replace a string or a regular expression			 |
-|^K    (F9)       	 |Cut the current line and store it in the cutbuffer |
-|^U    (F10)     	 |Uncut from the cutbuffer into the current line	 |
-|^J    (F4)      	 |Justify the current paragraph						 |  
-|^T    (F12)   		 |Invoke the spell checker, if available			 |
-|^C    (F11)    	 |Display the position of the cursor				 |
-|^_    (M-G)    	 |Go to line and column number						 |
-|M-U           		 |Undo the last operation							 |
-|M-E            	 |Redo the last undone operation					 |
-|M-A   (^6)      	 |Mark text starting from the cursor position		 |
-|M-6   (M-^)     	 |Copy the current line and store it in the cutbuffer|
-|M-]             	 |Go to the matching bracket						 |
-|M-W   (F16)     	 |Repeat the last search							 |
-|M-▲             	 |Search next occurrence backward					 |
-|M-▼             	 |Search next occurrence forward					 |
-|^B    (◀)       	 |Go back one character								 |
-|^F    (▶)       	 |Go forward one character							 |
-|^◀    (M-Space) 	 |Go back one word									 |
-|^▶    (^Space)  	 |Go forward one word								 |
-|^A    (Home)    	 |Go to beginning of current line					 |
-|^E    (End)     	 |Go to end of current line							 |
-|^R + ^X    		 |Execute command									 |	
-|^R + ^T    		 |To file											 |
-|^R + M-F    		 |New Buffer										 |
-|M-, 				 |Next Buffer										 |
-|M-, 				 |Previous Buffer									 |
-|M-Shift A 			 |Select mounted									 |
-|M-Shift 6 			 |Copy												 |
-|^U  				 |Pase												 |
+|Keys				 		 |Explanation 							             |
+|----------------------------|---------------------------------------------------|
+|^G    (F1)      	 		 |Display this help text							 |
+|^X    (F2)      	 		 |Close the current file buffer / Exit from nano	 |
+|^O    (F3)    		 		 |Write the current file to disk					 |
+|^R    (F5)      	 		 |Insert another file into the current one			 |
+|^W    (F6)      	 		 |Search forward for a string or a regular expression|
+|^\    (M-R)     	 		 |Replace a string or a regular expression			 |
+|^K    (F9)       	 		 |Cut the current line and store it in the cutbuffer |
+|^U    (F10)     	 		 |Uncut from the cutbuffer into the current line	 |
+|^J    (F4)      	 		 |Justify the current paragraph						 |  
+|^T    (F12)   		 		 |Invoke the spell checker, if available			 |
+|^C    (F11)    	 		 |Display the position of the cursor				 |
+|^_    (M-G)    	 		 |Go to line and column number						 |
+|M-U           		 		 |Undo the last operation							 |
+|M-E            	 		 |Redo the last undone operation					 |
+|M-A   (^6)      	 		 |Mark text starting from the cursor position		 |
+|M-6   (M-^)     	 		 |Copy the current line and store it in the cutbuffer|
+|M-]             	 		 |Go to the matching bracket						 |
+|M-W   (F16)     	 		 |Repeat the last search							 |
+|M-Arrow up             	 |Search next occurrence backward					 |
+|M-Arrow down             	 |Search next occurrence forward					 |
+|^B    (Left arrow)       	 |Go back one character								 |
+|^F    (Right arrow)       	 |Go forward one character							 |
+|^Left arrow    (M-Space) 	 |Go back one word									 |
+|^Right arrow    (^Space)  	 |Go forward one word								 |
+|^A    (Home)    	 		 |Go to beginning of current line					 |
+|^E    (End)     	 		 |Go to end of current line							 |
+|^R + ^X    		 		 |Execute command									 |	
+|^R + ^T    		 		 |To file											 |
+|^R + M-F    		 		 |New Buffer										 |
+|M-, 				 		 |Next Buffer										 |
+|M-, 				 		 |Previous Buffer									 |
+|M-Shift A 			 		 |Select mounted									 |
+|M-Shift 6 			 		 |Copy												 |
+|^U  				 		 |Pase												 |
 	
 > #### Vi		
 
@@ -336,14 +336,14 @@ Examples: *.txt, a*, a*.txt, ?.txt, a?, a?.txt, ca[nt]*, [!aeio]*
 
 ## Schedulink task
 
-* * * * * command to be executed
-- - - - -
-| | | | |
-| | | | ----- Day of week (0 - 7) (Sunday=0 or 7)
-| | | ------- Month (1 - 12)
-| | --------- Day of month (1 - 31)
-| ----------- Hour (0 - 23)
-------------- Minute (0 - 59)
+	* * * * * command to be executed
+	- - - - -
+	| | | | |
+	| | | | ----- Day of week (0 - 7) (Sunday=0 or 7)
+	| | | ------- Month (1 - 12)
+	| | --------- Day of month (1 - 31)
+	| ----------- Hour (0 - 23)
+	------------- Minute (0 - 59)
 
 |Command       |Explanation                       |
 |--------------|----------------------------------|
@@ -377,7 +377,7 @@ Example:
 touch st.sh
 
 nano file
-* * * * * /home/ecneb/Desktop/st.sh
+	* * * * * /home/ecneb/Desktop/st.sh
 
 crontab file
 
