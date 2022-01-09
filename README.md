@@ -240,6 +240,7 @@ nano test.txt
 
 vi
 vi test.txt
+
 |Keys				  |Explanation 							  |
 |---------------------|---------------------------------------|
 |k 					  |Up one line							  |
