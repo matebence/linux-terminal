@@ -361,7 +361,7 @@ Examples: *.txt, a*, a*.txt, ?.txt, a?, a?.txt, ca[nt]*, [!aeio]*
 ## Input Output
 
 |I/O Name 	 		 |Abbreviation	| File Descriptor  |
-|--------------------|---------------------------------|
+|--------------------|--------------|------------------|
 |Standard input 	 |stdin		    |0				   |
 |Standard output 	 |stdout		|1 				   |
 |Standard error 	 |stderr		|2				   |
@@ -536,6 +536,7 @@ crontab file
 |swapoff -v /swapfile 														|`remove swap (file and record from fstab has to be removed too)`|
 
 >cat /etc/fstab
+
 |fs								 |mount			 |type |options  |dump |pass|
 |--------------------------------|---------------|-----|---------|-----|----|
 |/dev/sdba1 					 | /			 |xfs  |defaults |0    |0   |
