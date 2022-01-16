@@ -1,4 +1,4 @@
-# Linux Directory structure
+## Linux Directory structure
 - /
 	- bin/
 		`Essential user command binaries`
@@ -35,7 +35,9 @@
 	- proc/
 		`Virtual file system documenting kernel and process status as text files` 
 
+
 ## Basics commands
+
 >https://explainshell.com/
 	
 	man ls
@@ -49,7 +51,9 @@
 	clear
 	exit
 
+
 ## Environment vars
+
 	EDITOR
 	HOME
 	LONGNAME
@@ -61,7 +65,8 @@
 	PWD
 	USER
 
-## Directories
+
+## Directories and link
 
 > #### Symbols explonations
 
@@ -81,6 +86,7 @@
 |mkdir -p t1/t2/t3      |`Create directory recursively` |
 |rmdir test             |`Remove directory`				|
 |rmdir -p t1/t2/t3      |`Remove directory recursively` |
+|ls -s /tmp/m.txt m     |`Create link in current dir`   |
 |ls  					|`Show directory contents`      |
 |ls -l      			|`Show in list format`          |
 |ls -a      			|`Show hidden files`            |
@@ -91,10 +97,12 @@
 |tree   				|`Show contents in graph format`|
 |tree -d      			|`Show only directories`        |
 
+
 ## Permissions
+
 > #### Example
 
-|Type|User permissions|Group permissions|Other permissions|Number of elments|    Owner|    Creator|   Size|    Date creation|    Time creation|   Name|
+|Type|User permissions|Group permissions|Other permissions|Number of elments|    Owner|    Group|   Size|    Date creation|    Time creation|   Name|
 |-|---|---|---|-|-----|-----|----|-----|-----|----|
 |d|rwx|r-x|r-x|2|ecneb|ecneb|4096|Jan 9|03:25|test|
 
@@ -142,10 +150,12 @@
 |chmod u-r,g+w,o=rwx test.txt 				   	     |`Change permission via Strings`  |
 |chmod 777 test.txt           						 |`Change permission via Binaries` |
 |chown ecneb 	test.txt        					 |`Change owner of file`	       |
+|chgroup -R ecneb www        					 	 |`Change group of dir content`    |
 |chcon system_u:object_r:httpd_config_t:s0 httpd.conf|`Change context` 				   |
 |restorecon httpd.conf           					 |`Restore context`    			   |
 |umask -S  	           								 |`Show default permissions`	   |
 |umask -S 0022  	           						 |`Set temp default permissions`   |
+
 
 ## Deleting, copying, moving, renaming, compress and creating archives
 
@@ -167,6 +177,7 @@
 |tar -tf testDir.tar 		   |`List compress file contents` 			 |
 |tar -xf testDir.tar		   |`Uncompress directory` 					 |
 
+
 ## Find and locate files
 
 |Command              		   |Explanation                              	  |
@@ -181,6 +192,7 @@
 |locate test.txt			   |`Find file test.txt`						  |
 |updatedb 					   |`Update indecies`   					      |
 
+
 ## Reading files
 
 |Command             |Explanation                          |
@@ -192,6 +204,7 @@
 |tail test.txt		 |`Output the ending of the file`      |
 |tail -f test.txt	 |`Watch file changes` 				   |  
 |watch more test.txt |`Watch file changes with any command`|
+
 
 ## File editors
 
@@ -320,20 +333,54 @@
 
 Examples: *.txt, a*, a*.txt, ?.txt, a?, a?.txt, ca[nt]*, [!aeio]*
 
+
 ## Transferring and Copying Files over the Network
 
-|Command       																  |Explanation                      |
-|-----------------------------------------------------------------------------|---------------------------------|
-|ssh ecneb@127.0.0.1 														  |`Connect via ssh` 			    |
-|exit 				 														  |`Exit from ssh` 					|
-|scp ecneb@127.0.0.1:/home/ecneb/Downloads/test/docker-compose.yml /home/ecneb|`Copy from server to local PC` 	|
-|scp /home/ecneb/Desktop/test.zip ecneb@127.0.0.1:/home/ecneb/Downloads  	  |`Copy from local PC to server`	|
-|sftp ecneb@127.0.0.1 													      |`Connect via sftp` 				|
-|bye 																		  |`Exit from sftp` 				|
-|get 																		  |`Download file` 					|
-|put 																		  |`Upload file` 					|
-|rm 																		  |`Remove file` 					|
+|Command       																  												|Explanation                        |
+|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
+|wget 127.0.0.1/main.txt													  												|`Connect via ssh`                  |
+|curl 'http:/example.com'																									|`Simple GET request`               |
+|curl -o output.html 'http:/example.com'																					|`Send request to output`           |
+|curl -X "POST" -d "name=John&surname=Doe" 'http:/example.com'																|`Send form data`                   |
+|curl -X "PUT" -d "{"name":"John","surname":"Doe"}" 'http:/example.com'														|`Send JSON`                        |
+|curl -XPOST -H 'Authorization: Bearer test' -H "Content-type: application/json" -d '{"name": "ecneb"}' 'http:/example.com' |`Using headers`                    |
+|curl -F 'img_avatar=@/home/petehouston/hello.txt' -F 'img_profile=@/home/petehouston/hello.txt' 'http:/example.com'		|`Sending files`                    |
+|ssh ecneb@127.0.0.1 														  												|`Connect via ssh` 			        |
+|exit 				 														  												|`Exit from ssh` 					|
+|scp ecneb@127.0.0.1:/home/ecneb/Downloads/test/docker-compose.yml /home/ecneb												|`Copy from server to local PC` 	|
+|scp /home/ecneb/Desktop/test.zip ecneb@127.0.0.1:/home/ecneb/Downloads  	  												|`Copy from local PC to server`	    |
+|sftp ecneb@127.0.0.1 													      												|`Connect via sftp` 				|
+|bye 																		  												|`Exit from sftp` 				    |
+|get 																		  												|`Download file` 					|
+|put 																		  												|`Upload file` 					    |
+|rm 																		  												|`Remove file` 					    |
 
+
+## Package Managers and Repositories
+
+## Input Output
+
+|I/O Name 	 		 |Abbreviation	| File Descriptor  |
+|--------------------|---------------------------------|
+|Standard input 	 |stdin		    |0				   |
+|Standard output 	 |stdout		|1 				   |
+|Standard error 	 |stderr		|2				   |
+
+
+	>  redirects standard output to a file
+	>> redirecs standard output to a file by appending 
+	<  redirects input from a file to a command
+
+
+## Shell history
+
+|Command       |Explanation                       |
+|--------------|----------------------------------|
+|history	   |`dispplays the shell history`     |
+
+	vi ~/.bash_history
+	vi ~/.history
+	vi ~/.histfile
 
 
 ## Schedulink task
@@ -365,6 +412,8 @@ Examples: *.txt, a*, a*.txt, ?.txt, a?, a?.txt, ca[nt]*, [!aeio]*
 |/etc/cron.monthly/  |`Run all scripts once a month` 							  |
 |/etc/cron.weekly/ 	 |`Run all scripts once a week` 							  |
 
+> #### Shortcuts
+
 |Special string 	 |Meaning
 |--------------------|---------------------------------|
 |@reboot 			 |`Run once, at startup.` 		   |
@@ -383,3 +432,190 @@ nano file
 
 crontab file
 
+
+## Multi tasking and processes
+
+
+## System maintaince
+
+> #### Getting information about the system
+
+|Command    	   |Explanation                       		|
+|------------------|----------------------------------------|
+|ip addr show 	   |`show ips` 								|
+|lscpu			   |`show cpus` 						    |
+|lsusb			   |`show list of usb devices` 				|
+|lspci			   |`show list of pci devices` 				|
+|free -h 		   |`show free memory` 						|
+|df -h  		   |`show disks` 							|
+|du file		   |`show disk useage of file` 				|
+|baobab 		   |`show disk usage in gui` 				|
+|top 			   |`show processes` 						|
+|cat /etc/*-release|`show OS informations` 					|
+|hostnamectl 	   |`show hostname` 						|
+|who 			   |`show who is logged in`					|
+|whoami 		   |`show who is the currently logged user` |
+|id 			   |`show id of logged user` 				|
+|id ecneb 		   |`show id for specific user` 			|
+|groups ecneb 	   |`show groups of logged user` 			|
+|groups ecneb 	   |`show groups for specific user` 		|
+
+> #### Uptime, reboot and shutdown
+
+|Command    	   |Explanation                       		|
+|------------------|----------------------------------------|
+|shutdown -r 10:00 |`schedule reboot`						|
+|shutdown -c 	   |`cancel scheduled reboot`				|
+|shutdown -r now   |`reboot PC`								|
+|shutdown -h now   |`shutdown PC`							|
+|uptime		 	   |`show how long is the pc running`		|
+|				   |`Short uptime - instable OS`		    | 
+|				   |`Long uptime  - outdated OS` 		    |
+
+	0.75 = 1 min
+	2.14 = 5 min
+	0.43 = 15 min
+
+	1.00 = 1 core at 100% 
+
+	higher number - some tasks have to wait
+	lower number  - the pc is not running on full capacity
+
+> #### Services
+
+|Command    	      			   |Explanation          	   						 |
+|----------------------------------|-------------------------------------------------|
+|systemctl --all --state=inactive  |`list all the inactive service` 				 |
+|systemctl --all --state=active    |`list all the active services` 				     |
+|systemctl disable NetworkManager  |`disables the named service` 					 |
+|systemctl enable NetworkManager   |`enables the named service` 					 |
+|systemctl status NetworkManager   |`returns the current status of the named service`|
+|systemctl start NetworkManager    |`starts the named service` 						 |
+|systemctl restart NetworkManager  |`restarts the named service` 					 |
+|systemctl stop NetworkManager     |`stops the named service` 						 |
+|systemctl mask NetworkManager     |`disallows any attempts to start` 				 |
+|systemctl unmask NetworkManager   |`allows any attempts to start` 					 |
+
+> #### Logs
+
+|Command 	    	   									|Explanation          	|
+|---------------------------------------------------|---------------------------|
+|cat /var/log/messages OR cat /var/log/syslog		|`System logs` 		 	    |
+|cat /var/log/boot.log OR journalctl -b 			|`Services how they start` 	|
+|cat /var/log/secure OR sudo cat /var/log/auth.log 	|`Security logs` 			|
+
+
+## Disk management
+
+|Command 								    								|Explanation                        				  |
+|---------------------------------------------------------------------------|-----------------------------------------------------|
+|ls /dev 					  												|`list devices on PC` 								  |
+|blkid 																		|`show partition block id` 							  |
+|fdisk -l 					    											|`list disk on PC` 									  |
+|fdisk /dev/sdb 															|`start disk management` 							  |
+|mkfs -t ext4 /dev/sdb1					    								|`create file system for partition` 				  |
+|mount /dev/sdb1 /mnt/external  		   									|`mount created partition` 							  |
+|mount -o loop /path/to/disk1.iso /mnt/disk 								|`mount iso file` 				    				  |
+|umount /mnt/external 														|`unmount created partition`        				  |
+|mount -a 																	|`mount everything what is fstab`   				  |
+|sshfs -o allow_other,default_permissions ecneb@127.0.0.1:/ /mnt/sshtest 	|`mount ssh endpoint` 								  |
+|rsync -a a/ b/ 															|`backup and sync between disks` 					  |
+|rsync -a ecneb@127.0.0.1:/home/ecneb/Desktop/a/ b/ 						|`backup and sync between remote PC` (remote -> local)|
+|rsync -a a/ ecneb@127.0.0.1:/home/ecneb/Desktop/b/ 						|`backup and sync between remote PC` (local -> remote)|
+
+
+## Swap
+
+|Command 								    								|Explanation                        				  		     |
+|---------------------------------------------------------------------------|----------------------------------------------------------------|
+|fallocate -l 1G /swapfile 													|`create 1GB swap file` 							  		     |
+|chmod 600 /swapfile 														|`set permissions to root` 							   		     |
+|mkswap /swapfile 															|`create swap` 					 					  		     |
+|swapon /swapfile 															|`add swap and to fstab` 		   					  		     |
+|swapon --show 																|`show swap` 										  		     | 
+|swapoff -v /swapfile 														|`remove swap (file and record from fstab has to be removed too)`|
+
+>cat /etc/fstab
+|fs								 |mount			 |type |options  |dump |pass|
+|--------------------------------|---------------|-----|---------|-----|----|
+|/dev/sdba1 					 | /			 |xfs  |defaults |0    |0   |
+|UUID=fds789er-dfs4654dsf-dfsd4f6| /mnt/external |ext4 |defaults |0    |0   |
+|/swapfile 					     |swap 			 |swap |defaults |0    |0 	|
+
+## Network management
+
+	en p0 s3 
+	-- -- --
+	|  |  | 
+	|  |  -------- Sot s1 s2 s3  
+	|  ----------- Bus [p]ci [u]sb
+	-------------- Type [e]ther[n]et [w]ir[e]less  
+
+> #### Basics
+
+|Command      			   |Explanation    	   						   |
+|--------------------------|-------------------------------------------|
+|ip addr 				   |`information about interfaces and ip`	   |
+|ip -4 addr 			   |`information in ipv4 format`			   |
+|ip -6 addr 			   |`information in ipv6 format`			   |
+|ip link set enp0s3 down   |`turn off interface` 					   |
+|ip link set enp0s3 up     |`turn on interface` 					   |
+|ethtool enp0s3 		   |`detailed information about the interface` |
+
+> #### NetworkManager
+
+|Command    	      									    |Explanation          	   						 |
+|-----------------------------------------------------------|------------------------------------------------|
+|nm-connecion-editor 									    |`start NetworkManager GUI` 				     |
+|nmcli device 												|`list available devices` 						 |
+|nmcli connection 											|`list connected devices` 						 |
+|nmcli connection down MyEthernet 							|`turn off MyEthernet device` 					 |
+|nmcli connection up MyEthernet 							|`turn on MyEthernet device` 					 |
+|nmcli connection show ec12d91a-18a6-3a37-8f22-3934f47a6631 |`show configuration of device with uuid` 		 |
+|nmcli connection edit ec12d91a-18a6-3a37-8f22-3934f47a6631 |`edit configuration of device with uuid` 		 |
+|nmcli > describe connection.id 							|`describe configuration item` 					 |
+|nmcli > set connection.id MyEthernet 						|`set configuration item` 						 |
+|nmcli > remove ipv4.addresses 								|`remove configured item` 						 |
+|nmcli > set ipv4.addresses  10.0.2.8/24 					|`set ipv4 address` 							 |
+|nmcli > set ipv4.gateway  10.0.2.1 						|`set gateway`									 |
+|nmcli > set ipv4.dns 10.0.2.1	 							|`set dns`  									 |
+|nmcli > save 												|`save changes` 								 |
+|nmcli radio wifi 											|`show wifi device` 						     |
+|nmcli radio wifi on 										|`turn on wifi`									 |
+|nmcli radio wifi off 										|`turn off wifi` 								 |
+|nmcli dev wifi list 										|`list available networks` 						 |
+|nmcli dev wifi connect wifi-name password "wifi-password"  |`connect to wireless network with password`     |
+
+> #### Firewalld
+
+|Command    	      			   							   |Explanation          	   		  		   |
+|--------------------------------------------------------------|-------------------------------------------|
+|firewall-config 											   |`start firewall GUI` 					   |
+|firewall-cmd --remove-service=http 						   |`remove item from firewall via service`    |
+|firewall-cmd --add-service=pop3s 							   |`add item to firewall via service`		   | 
+|firewall-cmd --zone=public --add-port=4545/tcp --permanent    |`add item to firewall via port` 		   | 
+|firewall-cmd --zone=public --remove-port=4545/tcp --permanent |`remove item from firewall via port`	   |
+|firewall-cmd --list-all 									   |`get complete list` 					   |
+|firewall-cmd --list-services 								   |`get list of assigned services` 		   |
+|firewall-cmd --list-all-zones 								   |`get complete list for all zones`		   |
+|firewall-cmd --get-zones 									   |`get list of zones`						   |
+|firewall-cmd --get-services 								   |`get list of services` 					   | 
+|firewall-cmd --get-default-zone					  		   |`get default zone` 						   |
+|firewall-cmd --set-default-zone=work     					   |`set default zone` 						   |
+|firewall-cmd --get-active-zones          					   |`get active zones`						   |
+|firewall-cmd --get-zone-of-interface=enp0s3 				   |`get zone by interface` 				   |
+|firewall-cmd --zone=work --add-interface=enp0s3 			   |`set zone for interface` 				   |	
+|firewall-cmd --reload 										   |`make changes permanent if added via port` |
+|firewall-cmd --runtime-to-permanent 						   |`change runtime configurtion to permanent` |
+
+> #### Netstat and SS
+
+|Command      |Explanation          	|
+|-------------|-------------------------|
+|ss -tln 	  |`listening connections` 	|
+|ss -tn 	  |`established connections`|
+|netstat -tln |`listening connections` 	|
+|netstat -tn  |`established connections`|
+
+
+## User management
