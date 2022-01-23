@@ -76,6 +76,7 @@
 |\.\.                   |`Parent directory`             |
 |/                      |`Root`                         |
 |~                      |`Home`					        |
+|{}                     |`multiple operator`		    |
 
 > #### Commands for manipulation
 
@@ -96,6 +97,9 @@
 |ls -Z      			|`Show SELinux context`         |
 |tree   				|`Show contents in graph format`|
 |tree -d      			|`Show only directories`        |
+|touch file_{01..100}  	|`create 100 files`	            |
+|echo {1..10..3}     	|`print range 1 4 7 10`         |
+|echo {A..Z}    		|`print letters from A to Z`    |
 
 
 ## Permissions
@@ -358,6 +362,98 @@ Examples: *.txt, a*, a*.txt, ?.txt, a?, a?.txt, ca[nt]*, [!aeio]*
 
 ## Package Managers and Repositories
 
+The software can be delivered in tree primary ways:
+- Source
+- Binary
+- Bundle (Package)
+
+	nano-2.3.1-10.el7.x86_64.rpm package to be installed
+	---- -------- --- ------ ---
+	  | 	| 	   | 	| 	  |
+	  | 	| 	   | 	| 	  ----- Type
+	  | 	| 	   | 	----------- Architecture
+	  | 	| 	   ---------------- Distribution
+	  | 	----------------------- Version
+	  ----------------------------- Name
+	
+	Redhat CentOS Fedora uses RPM and YUM Package Managers
+	Debian and Ubuntu uses APT DPKG	
+
+|Command       		  |Explanation                       		   |
+|---------------------|--------------------------------------------|
+|cat /etc/*-release   |`getting distribution`     				   |
+|uname -m 			  |`getting architecture`     		 		   |
+
+|URL Package repositories 				 |
+|----------------------------------------|
+|https://www.rpmfind.net/  				 |
+|https://packages.ubuntu.com/		  	 |
+|https://www.debian.org/distrib/packages |
+
+> #### Debian and Ubuntu (apt, dpkg)		
+
+|Command  							      		  |Explanation                       		   |
+|-------------------------------------------------|--------------------------------------------|
+|apt search nmap 							      |`search every where even in description`    |
+|apt-get download nmap 							  |`only download nmap` 					   |
+|apt-get install nmap 							  |`download and install nmap` 				   |
+|apt show nmap 									  |`showing information about nmap` 		   |
+|apt-get update 								  |`get update list of packages` 			   |
+|apt-get upgrade 								  |`update packages` 						   |
+|apt list --installed 							  |`show installed packages` 				   |
+|apt list --installed nmap 						  |`show if nmap is installed` 				   |
+|apt-mark hold nmap 							  |`mark nmap as dont update` 				   |
+|apt-mark unhold nmap 							  |`remove flag dont update` 				   |
+|apt remove nmap 								  |`remove nmap` 						   	   |
+|apt purge nmap 								  |`remove nmap and conf files` 			   |
+|dpkg -L nmap 									  |`check if nmap is installed`				   |
+|wget http://l.org/libcrypt1_4.4.18-4ub1_amd64.deb|`download package manually` 				   |
+|dpkg -c libcrypt1_4.4.18-4ubuntu1_amd64.deb 	  |`show depencies for package`				   |
+|dpkg -i libcrypt1_4.4.18-4ubuntu1_amd64.deb 	  |`install package` 				   		   |
+|dpgk -r nmap 								      |`remove package`			 				   |
+|dpgk --info libcrypt1_4.4.18-4ubuntu1_amd64.deb  |`show info about package` 		           |
+|dpgk -S nmap 									  |`getting package what is using command nmap`|
+
+> #### Redhat CentOS Fedora (yum, rpm)		
+
+|Command 						        		  |Explanation                       		       |
+|-------------------------------------------------|------------------------------------------------|
+|yum search nmap 								  |`search every where even in description`  	   |
+|yum install --downloadonly nmap 				  |`only download nmap`  						   |
+|yum install nmap 							      |`download and install nmap` 					   |
+|yum info nmap 									  |`showing information about nmap` 			   |
+|yum check-update 								  |`get update list of packages`  				   |
+|yum update 									  |`update packages` 							   | 
+|yum list installed 							  |`show installed packages` 				       |
+|yum list nmap 									  |`show if nmap is installed` 				       |
+|yum update -x nmap 							  |`exclude nmap from update` 					   |
+|yum versionlock nmap 	 						  |`making sure that dependecies doest update nmap`|
+|yum update nmap 	 							  |`update only nmap` 							   |
+|yum remove nmap 							      |`remove nmap` 							       |
+|yum grouplist 									  |`show what can be installed as group` 		   |
+|yum groupinfo "Basic Web Server" 				  |`show information about Basic Web Server` 	   |
+|yum groupinstall "Basic Web Server"  			  |`group install Basic Web Server` 			   |
+|yum groupremove "Basic Web Server" 			  |`group remove Basic Web Server` 				   |
+|wget https://nmap.org/dist/nmap-7.40-.x86_64.rpm |`download package manually` 					   |
+|rpm -qfRv nmap 								  |`show depencies for package` 				   |
+|rpm -i nmap-7.40-.x86_64.rpm 					  |`install package` 							   |
+|rpm -e nmap 									  |`remove package` 							   |
+|rpm -qlp nmap-7.40-.x86_64.rpm 				  |`show info about package`  					   |
+
+> #### Installing from source (via Makefile)		
+
+|Command  		      		   |Explanation                       		   |
+|------------------------------|-------------------------------------------|
+|tar -xf nmap-7.40-.x86_64.rpm |`extract downloaded package` 			   |
+|cd nmap-7.40-.x86_64 		   |`go to package folder`				       |
+|./configure 				   |`create source files` 				       |
+|make 						   |`run make command to trigger Makefile`     |
+|make -n install 			   |`show what is going to make install` 	   |
+|make install 				   |`install from source via make` 			   |
+
+[Managing apt packages via terminal GUI](http://manpages.ubuntu.com/manpages/bionic/man8/aptitude-curses.8.html)
+
+
 ## Input Output
 
 |I/O Name 	 		 |Abbreviation	| File Descriptor  |
@@ -366,10 +462,17 @@ Examples: *.txt, a*, a*.txt, ?.txt, a?, a?.txt, ca[nt]*, [!aeio]*
 |Standard output 	 |stdout		|1 				   |
 |Standard error 	 |stderr		|2				   |
 
-
 	>  redirects standard output to a file
 	>> redirecs standard output to a file by appending 
 	<  redirects input from a file to a command
+
+|Command       											 |Explanation                       		   |
+|--------------------------------------------------------|---------------------------------------------|
+|ls > ls.txt   											 |`write output to file`     				   |
+|ls >> ls.txt  											 |`append output to file`     		 		   |
+|cp -v * ../otherfolder 1>../success.txt 2>../error.txt  |`write error and success separately to files`|
+|cp -v * ../otherfolder &>../logs.txt     			     |`write everything to one file`			   |
+|ls > /dev/null						    			     |`send to no where`				  		   |
 
 
 ## Shell history
@@ -434,31 +537,93 @@ crontab file
 
 
 ## Multi tasking and processes
+		
+|Command    	   |Explanation                       															|
+|------------------|--------------------------------------------------------------------------------------------|
+|ps -e             |`Display all processes` 																	|
+|ps -ef            |`Display all processes in full format` 														|
+|ps -e --forest    |`Display a processes tree` 																	|
+|ps -u username    |`Display user's processes` 																	|
+|ps -p 45665 	   |`Display information about the process` 													|
+|jobs -l 		   |`show all jobs in bg` 																		|
+|bg %1 			   |`send task to bg` 																			|
+|fg %1 			   |`send task to fg` 																			|
+|kill %1 		   |`kill task` 																				|
+|fg %1 %2 %3 	   |`send multiple task to fg` 																	|
+|bg %1 %2 %3 	   |`send multiple task to bg` 																	|
+|kill %1 %2 %3 	   |`kill multiple tasks` 																	    |
+|disown %5 		   |`disown task so it will run after session timeout(ssh), then kill is only possible via ps`  |
+|bash sleep.sh 	   |`start in fg` 																				|
+|bash sleep.sh &   |`start in bg` 																				|
+
+|Keys	         |Explanation 			 	    |
+|----------------|------------------------------|
+|ctrl + Z 		 |`send to bg and make inactive`|
+|ctrl + C 		 |`close task`				    |
+
+|Command    	   			|Explanation                    |
+|---------------------------|-------------------------------|
+|tmux		 	   			|`start new window` 			|
+|tmux list-session 			|`list session` 			    |
+|tmux attach			    |`attach to recent` 			|
+|tmux attach -t 0			|`attach by id` 				|
+|tmux attach -t mySession	|`attach by name` 				|
+|tmux kill-session 0		|`kill session by id`			|
+|tmux kill-session mySession|`kill session by name`			|
+
+|Keys				  |Explanation 			  |
+|---------------------|-----------------------|
+|ctrl + b + ? 		  |`show help`			  |
+|ctrl + q 			  |`quit help`			  |
+|ctrl + b + c 		  |`start new tab`		  |
+|ctrl + b + x 		  |`close tab`			  |
+|ctrl + b + n 		  |`next tab`			  |
+|ctrl + b + p 		  |`previous tab`		  |
+|ctrl + b + 1 		  |`tab by number`		  |
+|ctrl + b + , 		  |`rename tab`			  |
+|ctrl + b + w 		  |`show tabs`			  |
+|ctrl + b + s 		  |`list sessions`		  |
+|ctrl + b + & 		  |`kill session`		  |
+|ctrl + b + d 		  |`detach session`		  |
+|ctrl + b + " 		  |`split vertical`		  |
+|ctrl + b + % 		  |`split horizontal`	  |
+|ctrl + b + arrows 	  |`navigate in split`	  |
+|ctrl + b + x 		  |`close splitted frame` |
 
 
 ## System maintaince
 
 > #### Getting information about the system
 
-|Command    	   |Explanation                       		|
-|------------------|----------------------------------------|
-|ip addr show 	   |`show ips` 								|
-|lscpu			   |`show cpus` 						    |
-|lsusb			   |`show list of usb devices` 				|
-|lspci			   |`show list of pci devices` 				|
-|free -h 		   |`show free memory` 						|
-|df -h  		   |`show disks` 							|
-|du file		   |`show disk useage of file` 				|
-|baobab 		   |`show disk usage in gui` 				|
-|top 			   |`show processes` 						|
-|cat /etc/*-release|`show OS informations` 					|
-|hostnamectl 	   |`show hostname` 						|
-|who 			   |`show who is logged in`					|
-|whoami 		   |`show who is the currently logged user` |
-|id 			   |`show id of logged user` 				|
-|id ecneb 		   |`show id for specific user` 			|
-|groups ecneb 	   |`show groups of logged user` 			|
-|groups ecneb 	   |`show groups for specific user` 		|
+|Command 				    	   			|Explanation                       		|
+|-------------------------------------------|---------------------------------------|
+|ip addr show 	   				   			|`show ips` 							|
+|lscpu			   				   			|`show cpus` 						    |
+|lsusb			   				   			|`show list of usb devices` 			|
+|lspci			   				   			|`show list of pci devices` 			|
+|free -h 		   				   			|`show free memory` 					|
+|df -h  		   				   			|`show disks` 							|
+|du file		   				   			|`show disk useage of file` 			|
+|baobab 		   				   			|`show disk usage in gui` 				|
+|top 			   				   			|`show processes` 						|
+|cat /etc/*-release				  			|`show OS informations` 				|
+|hostnamectl 	   				   			|`show hostname` 						|
+|who 			   				   			|`show who is logged in`				|
+|last 			   				   			|`login record`							|
+|logname 		   				   			|`who logged in initially`				|
+|whoami 		   				   			|`show who is the currently logged user`|
+|id 			   				   			|`show id of logged user` 				|
+|id ecneb 		   				   			|`show id for specific user` 			|
+|groups ecneb 	   				   			|`show groups of logged user` 			|
+|groups ecneb 	   				   			|`show groups for specific user` 		|
+|localectl 									|`show current local`					|
+|localectl set-locale LANG=en_US.utf8 		|`change locale`						|
+|localectl set-keymap us 					|`change keyboard`						|
+|timedatectl 								|`show current timedatime settings`  	|
+|timedatectl set-timezone America/Vencuvar 	|`set timezone`							|
+|timedatectl set-time 23:26:00 				|`set time`								|
+|timedatectl set-time 2019-09-20 			|`set date`								|
+|timedatectl set-time '2019-09-20 23:26:00' |`set date and time`					|
 
 > #### Uptime, reboot and shutdown
 
@@ -510,6 +675,7 @@ crontab file
 |Command 								    								|Explanation                        				  |
 |---------------------------------------------------------------------------|-----------------------------------------------------|
 |ls /dev 					  												|`list devices on PC` 								  |
+|ls /dev/disk 					  											|`list disks`		 								  |
 |blkid 																		|`show partition block id` 							  |
 |fdisk -l 					    											|`list disk on PC` 									  |
 |fdisk /dev/sdb 															|`start disk management` 							  |
@@ -522,6 +688,9 @@ crontab file
 |rsync -a a/ b/ 															|`backup and sync between disks` 					  |
 |rsync -a ecneb@127.0.0.1:/home/ecneb/Desktop/a/ b/ 						|`backup and sync between remote PC` (remote -> local)|
 |rsync -a a/ ecneb@127.0.0.1:/home/ecneb/Desktop/b/ 						|`backup and sync between remote PC` (local -> remote)|
+
+[More about disk encryption](https://www.cyberciti.biz/security/howto-linux-hard-disk-encryption-with-luks-cryptsetup-command/)
+[Logical volume Manager - A layer aboce physical disks](https://www.thegeekdiary.com/redhat-centos-a-beginners-guide-to-lvm-logical-volume-manager/)
 
 
 ## Swap
@@ -548,7 +717,7 @@ crontab file
 	en p0 s3 
 	-- -- --
 	|  |  | 
-	|  |  -------- Sot s1 s2 s3  
+	|  |  -------- Slot s1 s2 s3  
 	|  ----------- Bus [p]ci [u]sb
 	-------------- Type [e]ther[n]et [w]ir[e]less  
 
@@ -620,3 +789,38 @@ crontab file
 
 
 ## User management
+
+
+
+## Connect To Remote Desktop
+
+Remote Desktop Protocol:
+- VNC
+- RDP (Recommended)
+- NX
+
+Remote CLI protocols:
+- SSH (Recommended)
+- RLogin
+- Telnet
+
+|Command      			   							   |Explanation    	   						       |
+|------------------------------------------------------|-----------------------------------------------|
+|apt install openssh-server 				    	   |`install package to be able to connect via shh`|
+|apt install xrdp 									   |`install package to be able to connect via rdp`|
+|firewall-cmd --add-service=ssh 					   |`enable ssh on firewall` 					   |
+|firewall-cmd --permament --zone=public --port=3389/tcp|`enable xrd protocol on firewall` 			   |
+|firewall-cmd --reload 								   |`apply firewall changes` 					   |
+|ifconfig 											   |`show ip address` 							   |
+
+
+## Bash programing
+
+
+## AWK
+
+
+## SED
+
+
+## Server management
