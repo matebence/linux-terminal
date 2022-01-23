@@ -690,8 +690,8 @@ crontab file
 |rsync -a ecneb@127.0.0.1:/home/ecneb/Desktop/a/ b/ 						|`backup and sync between remote PC` (remote -> local)|
 |rsync -a a/ ecneb@127.0.0.1:/home/ecneb/Desktop/b/ 						|`backup and sync between remote PC` (local -> remote)|
 
-[More about disk encryption](https://www.cyberciti.biz/security/howto-linux-hard-disk-encryption-with-luks-cryptsetup-command/)
-[Logical volume Manager - A layer aboce physical disks](https://www.thegeekdiary.com/redhat-centos-a-beginners-guide-to-lvm-logical-volume-manager/)
+- [More about disk encryption](https://www.cyberciti.biz/security/howto-linux-hard-disk-encryption-with-luks-cryptsetup-command/)
+- [Logical volume Manager - A layer aboce physical disks](https://www.thegeekdiary.com/redhat-centos-a-beginners-guide-to-lvm-logical-volume-manager/)
 
 
 ## Swap
