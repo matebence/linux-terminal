@@ -368,14 +368,14 @@ The software can be delivered in tree primary ways:
 - Binary
 - Bundle (Package)
 
-	nano-2.3.1.el7.x86_64.rpm package to be installed
-	---- ----- --- ------ ---
-	|		|	|	|		|
-	|		|	|	| 		---- Type
-	|		|	|	------------ Architecture
-	|		|	---------------- Distribution
-	|		-------------------- Version
-	---------------------------- Name
+		nano-2.3.1.el7.x86_64.rpm package to be installed
+		---- ----- --- ------ ---
+		|		|	|	|		|
+		|		|	|	| 		---- Type
+		|		|	|	------------ Architecture
+		|		|	---------------- Distribution
+		|		-------------------- Version
+		---------------------------- Name
 	
 	Redhat CentOS Fedora uses RPM and YUM Package Managers
 	Debian and Ubuntu uses APT DPKG	
