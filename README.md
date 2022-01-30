@@ -38,10 +38,9 @@
 
 
 ## Basics commands
-
->https://explainshell.com/
 	
 	man ls
+	info bash
 	ls --help
 
 	ls
@@ -51,6 +50,8 @@
 	echo
 	clear
 	exit
+
+- [Shell commands explained](https://explainshell.com/)
 
 
 ## Environment vars
@@ -77,7 +78,7 @@
 |\.\.                   |`Parent directory`             |
 |/                      |`Root`                         |
 |~                      |`Home`					        |
-|{}                     |`multiple operator`		    |
+|{}                     |`Multiple operator`		    |
 
 > #### Commands for manipulation
 
@@ -98,9 +99,9 @@
 |ls -Z      			|`Show SELinux context`         |
 |tree   				|`Show contents in graph format`|
 |tree -d      			|`Show only directories`        |
-|touch file_{01..100}  	|`create 100 files`	            |
-|echo {1..10..3}     	|`print range 1 4 7 10`         |
-|echo {A..Z}    		|`print letters from A to Z`    |
+|touch file_{01..100}  	|`Create 100 files`	            |
+|echo {1..10..3}     	|`Print range 1 4 7 10`         |
+|echo {A..Z}    		|`Print letters from A to Z`    |
 
 
 ## Permissions
@@ -188,7 +189,7 @@
 |Command              		   |Explanation                              	  |
 |------------------------------|----------------------------------------------|
 |find . -name test.txt		   |`Find test.txt in current dir`   	          |
-|find . -iname test.txt		   |`Find test.txt in current dir and ignore case`|  												 
+|find . -iname test.txt		   |`Find test.txt in current dir and ignore case`| 
 |find . -size +9k			   |`Find files bigger than 9 kilobytes` 	 	  |
 |find . -size +9M			   |`Find files bigger than 9 megabytes` 		  |
 |find . -size +9G			   |`Find files bigger than 9 gigabytes` 		  |
@@ -202,6 +203,7 @@
 
 |Command             |Explanation                          |
 |--------------------|-------------------------------------|
+|nl test.sh			 |`Display scripts with line numbering`|
 |cat test.txt		 |`Display cotents of file`   		   |
 |more test.txt		 |`Browse to the file`   			   |
 |less test.txt		 |`Browse to the file`   			   |
@@ -313,6 +315,7 @@
 
 |Command              		   |Explanation                    |
 |------------------------------|-------------------------------|
+|wc -l numbers.xls		   	   |`Prints the number of line`	   |
 |sort -r numbers.xls		   |`Sort by reverse order` 	   |
 |sort -u numbers.xls 		   |`Sort unique`				   |
 |sdiff numbers.xls months.xls  |`Show diff`					   |
@@ -377,13 +380,13 @@ The software can be delivered in tree primary ways:
 		  |    ---------------------- Version
 		  --------------------------- Name
 
-	Redhat CentOS Fedora uses RPM and YUM Package Managers
-	Debian and Ubuntu uses APT DPKG	
+- Redhat CentOS Fedora uses RPM and YUM Package Managers
+- Debian and Ubuntu uses APT DPKG	
 
 |Command       		  |Explanation                       		   |
 |---------------------|--------------------------------------------|
-|cat /etc/*-release   |`getting distribution`     				   |
-|uname -m 			  |`getting architecture`     		 		   |
+|cat /etc/*-release   |`Getting distribution`     				   |
+|uname -m 			  |`Getting architecture`     		 		   |
 
 |URL Package repositories 				 |
 |----------------------------------------|
@@ -395,64 +398,64 @@ The software can be delivered in tree primary ways:
 
 |Command  							      		  |Explanation                       		   |
 |-------------------------------------------------|--------------------------------------------|
-|apt search nmap 							      |`search every where even in description`    |
-|apt-get download nmap 							  |`only download nmap` 					   |
-|apt-get install nmap 							  |`download and install nmap` 				   |
-|apt show nmap 									  |`showing information about nmap` 		   |
-|apt-get update 								  |`get update list of packages` 			   |
-|apt-get upgrade 								  |`update packages` 						   |
-|apt list --installed 							  |`show installed packages` 				   |
-|apt list --installed nmap 						  |`show if nmap is installed` 				   |
-|apt-mark hold nmap 							  |`mark nmap as dont update` 				   |
-|apt-mark unhold nmap 							  |`remove flag dont update` 				   |
-|apt remove nmap 								  |`remove nmap` 						   	   |
-|apt purge nmap 								  |`remove nmap and conf files` 			   |
-|dpkg -L nmap 									  |`check if nmap is installed`				   |
-|wget http://l.org/libcrypt1_4.4.18-4ub1_amd64.deb|`download package manually` 				   |
-|dpkg -c libcrypt1_4.4.18-4ubuntu1_amd64.deb 	  |`show depencies for package`				   |
-|dpkg -i libcrypt1_4.4.18-4ubuntu1_amd64.deb 	  |`install package` 				   		   |
-|dpgk -r nmap 								      |`remove package`			 				   |
-|dpgk --info libcrypt1_4.4.18-4ubuntu1_amd64.deb  |`show info about package` 		           |
-|dpgk -S nmap 									  |`getting package what is using command nmap`|
+|apt search nmap 							      |`Search every where even in description`    |
+|apt-get download nmap 							  |`Only download nmap` 					   |
+|apt-get install nmap 							  |`Download and install nmap` 				   |
+|apt show nmap 									  |`Showing information about nmap` 		   |
+|apt-get update 								  |`Get update list of packages` 			   |
+|apt-get upgrade 								  |`Update packages` 						   |
+|apt list --installed 							  |`Show installed packages` 				   |
+|apt list --installed nmap 						  |`Show if nmap is installed` 				   |
+|apt-mark hold nmap 							  |`Mark nmap as dont update` 				   |
+|apt-mark unhold nmap 							  |`Remove flag dont update` 				   |
+|apt remove nmap 								  |`Remove nmap` 						   	   |
+|apt purge nmap 								  |`Remove nmap and conf files` 			   |
+|dpkg -L nmap 									  |`Check if nmap is installed`				   |
+|wget http://l.org/libcrypt1_4.4.18-4ub1_amd64.deb|`Download package manually` 				   |
+|dpkg -c libcrypt1_4.4.18-4ubuntu1_amd64.deb 	  |`Show depencies for package`				   |
+|dpkg -i libcrypt1_4.4.18-4ubuntu1_amd64.deb 	  |`Install package` 				   		   |
+|dpgk -r nmap 								      |`Remove package`			 				   |
+|dpgk --info libcrypt1_4.4.18-4ubuntu1_amd64.deb  |`Show info about package` 		           |
+|dpgk -S nmap 									  |`Getting package what is using command nmap`|
 
 > #### Redhat CentOS Fedora (yum, rpm)		
 
 |Command 						        		  |Explanation                       		       |
 |-------------------------------------------------|------------------------------------------------|
-|yum search nmap 								  |`search every where even in description`  	   |
-|yum install --downloadonly nmap 				  |`only download nmap`  						   |
-|yum install nmap 							      |`download and install nmap` 					   |
-|yum info nmap 									  |`showing information about nmap` 			   |
-|yum check-update 								  |`get update list of packages`  				   |
-|yum update 									  |`update packages` 							   | 
-|yum list installed 							  |`show installed packages` 				       |
-|yum list nmap 									  |`show if nmap is installed` 				       |
-|yum update -x nmap 							  |`exclude nmap from update` 					   |
-|yum versionlock nmap 	 						  |`making sure that dependecies doest update nmap`|
-|yum update nmap 	 							  |`update only nmap` 							   |
-|yum remove nmap 							      |`remove nmap` 							       |
-|yum grouplist 									  |`show what can be installed as group` 		   |
-|yum groupinfo "Basic Web Server" 				  |`show information about Basic Web Server` 	   |
-|yum groupinstall "Basic Web Server"  			  |`group install Basic Web Server` 			   |
-|yum groupremove "Basic Web Server" 			  |`group remove Basic Web Server` 				   |
-|wget https://nmap.org/dist/nmap-7.40-.x86_64.rpm |`download package manually` 					   |
-|rpm -qfRv nmap 								  |`show depencies for package` 				   |
-|rpm -i nmap-7.40-.x86_64.rpm 					  |`install package` 							   |
-|rpm -e nmap 									  |`remove package` 							   |
-|rpm -qlp nmap-7.40-.x86_64.rpm 				  |`show info about package`  					   |
+|yum search nmap 								  |`Search every where even in description`  	   |
+|yum install --downloadonly nmap 				  |`Only download nmap`  						   |
+|yum install nmap 							      |`Download and install nmap` 					   |
+|yum info nmap 									  |`Showing information about nmap` 			   |
+|yum check-update 								  |`Get update list of packages`  				   |
+|yum update 									  |`Update packages` 							   | 
+|yum list installed 							  |`Show installed packages` 				       |
+|yum list nmap 									  |`Show if nmap is installed` 				       |
+|yum update -x nmap 							  |`Exclude nmap from update` 					   |
+|yum versionlock nmap 	 						  |`Making sure that dependecies doest update nmap`|
+|yum update nmap 	 							  |`Update only nmap` 							   |
+|yum remove nmap 							      |`Remove nmap` 							       |
+|yum grouplist 									  |`Show what can be installed as group` 		   |
+|yum groupinfo "Basic Web Server" 				  |`Show information about Basic Web Server` 	   |
+|yum groupinstall "Basic Web Server"  			  |`Group install Basic Web Server` 			   |
+|yum groupremove "Basic Web Server" 			  |`Group remove Basic Web Server` 				   |
+|wget https://nmap.org/dist/nmap-7.40-.x86_64.rpm |`Download package manually` 					   |
+|rpm -qfRv nmap 								  |`Show depencies for package` 				   |
+|rpm -i nmap-7.40-.x86_64.rpm 					  |`Install package` 							   |
+|rpm -e nmap 									  |`Remove package` 							   |
+|rpm -qlp nmap-7.40-.x86_64.rpm 				  |`Show info about package`  					   |
 
 > #### Installing from source (via Makefile)		
 
 |Command  		      		   |Explanation                       		   |
 |------------------------------|-------------------------------------------|
-|tar -xf nmap-7.40-.x86_64.rpm |`extract downloaded package` 			   |
-|cd nmap-7.40-.x86_64 		   |`go to package folder`				       |
-|./configure 				   |`create source files` 				       |
-|make 						   |`run make command to trigger Makefile`     |
-|make -n install 			   |`show what is going to make install` 	   |
-|make install 				   |`install from source via make` 			   |
+|tar -xf nmap-7.40-.x86_64.rpm |`Extract downloaded package` 			   |
+|cd nmap-7.40-.x86_64 		   |`Go to package folder`				       |
+|./configure 				   |`Create source files` 				       |
+|make 						   |`Run make command to trigger Makefile`     |
+|make -n install 			   |`Show what is going to make install` 	   |
+|make install 				   |`Install from source via make` 			   |
 
-[Managing apt packages via terminal GUI](http://manpages.ubuntu.com/manpages/bionic/man8/aptitude-curses.8.html)
+- [Managing apt packages via terminal GUI](http://manpages.ubuntu.com/manpages/bionic/man8/aptitude-curses.8.html)
 
 
 ## Input Output
@@ -469,18 +472,18 @@ The software can be delivered in tree primary ways:
 
 |Command       											 |Explanation                       		   |
 |--------------------------------------------------------|---------------------------------------------|
-|ls > ls.txt   											 |`write output to file`     				   |
-|ls >> ls.txt  											 |`append output to file`     		 		   |
-|cp -v * ../otherfolder 1>../success.txt 2>../error.txt  |`write error and success separately to files`|
-|cp -v * ../otherfolder &>../logs.txt     			     |`write everything to one file`			   |
-|ls > /dev/null						    			     |`send to no where`				  		   |
+|ls > ls.txt   											 |`Write output to file`     				   |
+|ls >> ls.txt  											 |`Append output to file`     		 		   |
+|cp -v * ../otherfolder 1>../success.txt 2>../error.txt  |`Write error and success separately to files`|
+|cp -v * ../otherfolder &>../logs.txt     			     |`Write everything to one file`			   |
+|ls > /dev/null						    			     |`Send to no where`				  		   |
 
 
 ## Shell history
 
 |Command       |Explanation                       |
 |--------------|----------------------------------|
-|history	   |`dispplays the shell history`     |
+|history	   |`Displays the shell history`     |
 
 	vi ~/.bash_history
 	vi ~/.history
@@ -500,10 +503,10 @@ The software can be delivered in tree primary ways:
 
 |Command       |Explanation                       |
 |--------------|----------------------------------|
-|crontab file  |`install a new crontab from file` |
-|crontab -l    |`list crontab jobs`				  |
-|crontab -e    |`edit crontab jobs` 			  |
-|crontab -r    |`remove crontab jobs`			  |
+|crontab file  |`Install a new crontab from file` |
+|crontab -l    |`List crontab jobs`				  |
+|crontab -e    |`Edit crontab jobs` 			  |
+|crontab -r    |`Remove crontab jobs`			  |
 
 
 >/etc/crontab is system crontabs file. Usually only used by root user or daemons to configure system wide jobs. All individual user must must use crontab command to install and edit their jobs as described above.
@@ -546,50 +549,50 @@ crontab file
 |ps -e --forest    |`Display a processes tree` 																	|
 |ps -u username    |`Display user's processes` 																	|
 |ps -p 45665 	   |`Display information about the process` 													|
-|jobs -l 		   |`show all jobs in bg` 																		|
-|bg %1 			   |`send task to bg` 																			|
-|fg %1 			   |`send task to fg` 																			|
-|kill %1 		   |`kill task` 																				|
-|fg %1 %2 %3 	   |`send multiple task to fg` 																	|
-|bg %1 %2 %3 	   |`send multiple task to bg` 																	|
-|kill %1 %2 %3 	   |`kill multiple tasks` 																	    |
-|disown %5 		   |`disown task so it will run after session timeout(ssh), then kill is only possible via ps`  |
-|bash sleep.sh 	   |`start in fg` 																				|
-|bash sleep.sh &   |`start in bg` 																				|
+|jobs -l 		   |`Show all jobs in bg` 																		|
+|bg %1 			   |`Send task to bg` 																			|
+|fg %1 			   |`Send task to fg` 																			|
+|kill %1 		   |`Kill task` 																				|
+|fg %1 %2 %3 	   |`Send multiple task to fg` 																	|
+|bg %1 %2 %3 	   |`Send multiple task to bg` 																	|
+|kill %1 %2 %3 	   |`Kill multiple tasks` 																	    |
+|disown %5 		   |`Disown task so it will run after session timeout(ssh), then kill is only possible via ps`  |
+|bash sleep.sh 	   |`Start in fg` 																				|
+|bash sleep.sh &   |`Start in bg` 																				|
 
 |Keys	         |Explanation 			 	    |
 |----------------|------------------------------|
-|ctrl + Z 		 |`send to bg and make inactive`|
-|ctrl + C 		 |`close task`				    |
+|ctrl + Z 		 |`Send to bg and make inactive`|
+|ctrl + C 		 |`Close task`				    |
 
 |Command    	   			|Explanation                    |
 |---------------------------|-------------------------------|
-|tmux		 	   			|`start new window` 			|
-|tmux list-session 			|`list session` 			    |
-|tmux attach			    |`attach to recent` 			|
-|tmux attach -t 0			|`attach by id` 				|
-|tmux attach -t mySession	|`attach by name` 				|
-|tmux kill-session 0		|`kill session by id`			|
-|tmux kill-session mySession|`kill session by name`			|
+|tmux		 	   			|`Start new window` 			|
+|tmux list-session 			|`List session` 			    |
+|tmux attach			    |`Attach to recent` 			|
+|tmux attach -t 0			|`Attach by id` 				|
+|tmux attach -t mySession	|`Attach by name` 				|
+|tmux kill-session 0		|`Kill session by id`			|
+|tmux kill-session mySession|`Kill session by name`			|
 
 |Keys				  |Explanation 			  |
 |---------------------|-----------------------|
-|ctrl + b + ? 		  |`show help`			  |
-|ctrl + q 			  |`quit help`			  |
-|ctrl + b + c 		  |`start new tab`		  |
-|ctrl + b + x 		  |`close tab`			  |
-|ctrl + b + n 		  |`next tab`			  |
-|ctrl + b + p 		  |`previous tab`		  |
-|ctrl + b + 1 		  |`tab by number`		  |
-|ctrl + b + , 		  |`rename tab`			  |
-|ctrl + b + w 		  |`show tabs`			  |
-|ctrl + b + s 		  |`list sessions`		  |
-|ctrl + b + & 		  |`kill session`		  |
-|ctrl + b + d 		  |`detach session`		  |
-|ctrl + b + " 		  |`split vertical`		  |
-|ctrl + b + % 		  |`split horizontal`	  |
-|ctrl + b + arrows 	  |`navigate in split`	  |
-|ctrl + b + x 		  |`close splitted frame` |
+|ctrl + b + ? 		  |`Show help`			  |
+|ctrl + q 			  |`Quit help`			  |
+|ctrl + b + c 		  |`Start new tab`		  |
+|ctrl + b + x 		  |`Close tab`			  |
+|ctrl + b + n 		  |`Next tab`			  |
+|ctrl + b + p 		  |`Previous tab`		  |
+|ctrl + b + 1 		  |`Tab by number`		  |
+|ctrl + b + , 		  |`Rename tab`			  |
+|ctrl + b + w 		  |`Show tabs`			  |
+|ctrl + b + s 		  |`List sessions`		  |
+|ctrl + b + & 		  |`Kill session`		  |
+|ctrl + b + d 		  |`Detach session`		  |
+|ctrl + b + " 		  |`Split vertical`		  |
+|ctrl + b + % 		  |`Split horizontal`	  |
+|ctrl + b + arrows 	  |`Navigate in split`	  |
+|ctrl + b + x 		  |`Close splitted frame` |
 
 
 ## System maintaince
@@ -598,43 +601,43 @@ crontab file
 
 |Command 				    	   			|Explanation                       		|
 |-------------------------------------------|---------------------------------------|
-|ip addr show 	   				   			|`show ips` 							|
-|lscpu			   				   			|`show cpus` 						    |
-|lsusb			   				   			|`show list of usb devices` 			|
-|lspci			   				   			|`show list of pci devices` 			|
-|free -h 		   				   			|`show free memory` 					|
-|df -h  		   				   			|`show disks` 							|
-|du file		   				   			|`show disk useage of file` 			|
-|baobab 		   				   			|`show disk usage in gui` 				|
-|top 			   				   			|`show processes` 						|
-|cat /etc/*-release				  			|`show OS informations` 				|
-|hostnamectl 	   				   			|`show hostname` 						|
-|who 			   				   			|`show who is logged in`				|
-|last 			   				   			|`login record`							|
-|logname 		   				   			|`who logged in initially`				|
-|whoami 		   				   			|`show who is the currently logged user`|
-|id 			   				   			|`show id of logged user` 				|
-|id ecneb 		   				   			|`show id for specific user` 			|
-|groups ecneb 	   				   			|`show groups of logged user` 			|
-|groups ecneb 	   				   			|`show groups for specific user` 		|
-|localectl 									|`show current local`					|
-|localectl set-locale LANG=en_US.utf8 		|`change locale`						|
-|localectl set-keymap us 					|`change keyboard`						|
-|timedatectl 								|`show current timedatime settings`  	|
-|timedatectl set-timezone America/Vencuvar 	|`set timezone`							|
-|timedatectl set-time 23:26:00 				|`set time`								|
-|timedatectl set-time 2019-09-20 			|`set date`								|
-|timedatectl set-time '2019-09-20 23:26:00' |`set date and time`					|
+|ip addr show 	   				   			|`Show ips` 							|
+|lscpu			   				   			|`Show cpus` 						    |
+|lsusb			   				   			|`Show list of usb devices` 			|
+|lspci			   				   			|`Show list of pci devices` 			|
+|free -h 		   				   			|`Show free memory` 					|
+|df -h  		   				   			|`Show disks` 							|
+|du file		   				   			|`Show disk useage of file` 			|
+|baobab 		   				   			|`Show disk usage in gui` 				|
+|top 			   				   			|`Show processes` 						|
+|cat /etc/*-release				  			|`Show OS informations` 				|
+|hostnamectl 	   				   			|`Show hostname` 						|
+|who 			   				   			|`Show who is logged in`				|
+|last 			   				   			|`Login record`							|
+|logname 		   				   			|`Who logged in initially`				|
+|whoami 		   				   			|`Show who is the currently logged user`|
+|id 			   				   			|`Show id of logged user` 				|
+|id ecneb 		   				   			|`Show id for specific user` 			|
+|groups ecneb 	   				   			|`Show groups of logged user` 			|
+|groups ecneb 	   				   			|`Show groups for specific user` 		|
+|localectl 									|`Show current local`					|
+|localectl set-locale LANG=en_US.utf8 		|`Change locale`						|
+|localectl set-keymap us 					|`Change keyboard`						|
+|timedatectl 								|`Show current timedatime settings`  	|
+|timedatectl set-timezone America/Vencuvar 	|`Set timezone`							|
+|timedatectl set-time 23:26:00 				|`Set time`								|
+|timedatectl set-time 2019-09-20 			|`Set date`								|
+|timedatectl set-time '2019-09-20 23:26:00' |`Set date and time`					|
 
 > #### Uptime, reboot and shutdown
 
 |Command    	   |Explanation                       		|
 |------------------|----------------------------------------|
-|shutdown -r 10:00 |`schedule reboot`						|
-|shutdown -c 	   |`cancel scheduled reboot`				|
-|shutdown -r now   |`reboot PC`								|
-|shutdown -h now   |`shutdown PC`							|
-|uptime		 	   |`show how long is the pc running`		|
+|shutdown -r 10:00 |`Schedule reboot`						|
+|shutdown -c 	   |`Cancel scheduled reboot`				|
+|shutdown -r now   |`Reboot PC`								|
+|shutdown -h now   |`Shutdown PC`							|
+|uptime		 	   |`Show how long is the pc running`		|
 |				   |`Short uptime - instable OS`		    | 
 |				   |`Long uptime  - outdated OS` 		    |
 
@@ -651,16 +654,16 @@ crontab file
 
 |Command    	      			   |Explanation          	   						 |
 |----------------------------------|-------------------------------------------------|
-|systemctl --all --state=inactive  |`list all the inactive service` 				 |
-|systemctl --all --state=active    |`list all the active services` 				     |
-|systemctl disable NetworkManager  |`disables the named service` 					 |
-|systemctl enable NetworkManager   |`enables the named service` 					 |
-|systemctl status NetworkManager   |`returns the current status of the named service`|
-|systemctl start NetworkManager    |`starts the named service` 						 |
-|systemctl restart NetworkManager  |`restarts the named service` 					 |
-|systemctl stop NetworkManager     |`stops the named service` 						 |
-|systemctl mask NetworkManager     |`disallows any attempts to start` 				 |
-|systemctl unmask NetworkManager   |`allows any attempts to start` 					 |
+|systemctl --all --state=inactive  |`List all the inactive service` 				 |
+|systemctl --all --state=active    |`List all the active services` 				     |
+|systemctl disable NetworkManager  |`Disables the named service` 					 |
+|systemctl enable NetworkManager   |`Enables the named service` 					 |
+|systemctl status NetworkManager   |`Returns the current status of the named service`|
+|systemctl start NetworkManager    |`Starts the named service` 						 |
+|systemctl restart NetworkManager  |`Restarts the named service` 					 |
+|systemctl stop NetworkManager     |`Stops the named service` 						 |
+|systemctl mask NetworkManager     |`Disallows any attempts to start` 				 |
+|systemctl unmask NetworkManager   |`Allows any attempts to start` 					 |
 
 > #### Logs
 
@@ -675,20 +678,20 @@ crontab file
 
 |Command 								    								|Explanation                        				  |
 |---------------------------------------------------------------------------|-----------------------------------------------------|
-|ls /dev 					  												|`list devices on PC` 								  |
-|ls /dev/disk 					  											|`list disks`		 								  |
-|blkid 																		|`show partition block id` 							  |
-|fdisk -l 					    											|`list disk on PC` 									  |
-|fdisk /dev/sdb 															|`start disk management` 							  |
-|mkfs -t ext4 /dev/sdb1					    								|`create file system for partition` 				  |
-|mount /dev/sdb1 /mnt/external  		   									|`mount created partition` 							  |
-|mount -o loop /path/to/disk1.iso /mnt/disk 								|`mount iso file` 				    				  |
-|umount /mnt/external 														|`unmount created partition`        				  |
-|mount -a 																	|`mount everything what is fstab`   				  |
-|sshfs -o allow_other,default_permissions ecneb@127.0.0.1:/ /mnt/sshtest 	|`mount ssh endpoint` 								  |
-|rsync -a a/ b/ 															|`backup and sync between disks` 					  |
-|rsync -a ecneb@127.0.0.1:/home/ecneb/Desktop/a/ b/ 						|`backup and sync between remote PC` (remote -> local)|
-|rsync -a a/ ecneb@127.0.0.1:/home/ecneb/Desktop/b/ 						|`backup and sync between remote PC` (local -> remote)|
+|ls /dev 					  												|`List devices on PC` 								  |
+|ls /dev/disk 					  											|`List disks`		 								  |
+|blkid 																		|`Show partition block id` 							  |
+|fdisk -l 					    											|`List disk on PC` 									  |
+|fdisk /dev/sdb 															|`Start disk management` 							  |
+|mkfs -t ext4 /dev/sdb1					    								|`Create file system for partition` 				  |
+|mount /dev/sdb1 /mnt/external  		   									|`Mount created partition` 							  |
+|mount -o loop /path/to/disk1.iso /mnt/disk 								|`Mount iso file` 				    				  |
+|umount /mnt/external 														|`Unmount created partition`        				  |
+|mount -a 																	|`Mount everything what is fstab`   				  |
+|sshfs -o allow_other,default_permissions ecneb@127.0.0.1:/ /mnt/sshtest 	|`Mount ssh endpoint` 								  |
+|rsync -a a/ b/ 															|`Backup and sync between disks` 					  |
+|rsync -a ecneb@127.0.0.1:/home/ecneb/Desktop/a/ b/ 						|`Backup and sync between remote PC` (remote -> local)|
+|rsync -a a/ ecneb@127.0.0.1:/home/ecneb/Desktop/b/ 						|`Backup and sync between remote PC` (local -> remote)|
 
 - [More about disk encryption](https://www.cyberciti.biz/security/howto-linux-hard-disk-encryption-with-luks-cryptsetup-command/)
 - [Logical volume Manager - A layer aboce physical disks](https://www.thegeekdiary.com/redhat-centos-a-beginners-guide-to-lvm-logical-volume-manager/)
@@ -698,12 +701,12 @@ crontab file
 
 |Command 								    								|Explanation                        				  		     |
 |---------------------------------------------------------------------------|----------------------------------------------------------------|
-|fallocate -l 1G /swapfile 													|`create 1GB swap file` 							  		     |
-|chmod 600 /swapfile 														|`set permissions to root` 							   		     |
-|mkswap /swapfile 															|`create swap` 					 					  		     |
-|swapon /swapfile 															|`add swap and to fstab` 		   					  		     |
-|swapon --show 																|`show swap` 										  		     | 
-|swapoff -v /swapfile 														|`remove swap (file and record from fstab has to be removed too)`|
+|fallocate -l 1G /swapfile 													|`Create 1GB swap file` 							  		     |
+|chmod 600 /swapfile 														|`Set permissions to root` 							   		     |
+|mkswap /swapfile 															|`Create swap` 					 					  		     |
+|swapon /swapfile 															|`Add swap and to fstab` 		   					  		     |
+|swapon --show 																|`Show swap` 										  		     | 
+|swapoff -v /swapfile 														|`Remove swap (file and record from fstab has to be removed too)`|
 
 >cat /etc/fstab
 
@@ -726,67 +729,67 @@ crontab file
 
 |Command      			   |Explanation    	   						   |
 |--------------------------|-------------------------------------------|
-|ip addr 				   |`information about interfaces and ip`	   |
-|ip -4 addr 			   |`information in ipv4 format`			   |
-|ip -6 addr 			   |`information in ipv6 format`			   |
-|ip link set enp0s3 down   |`turn off interface` 					   |
-|ip link set enp0s3 up     |`turn on interface` 					   |
-|ethtool enp0s3 		   |`detailed information about the interface` |
+|ip addr 				   |`Information about interfaces and ip`	   |
+|ip -4 addr 			   |`Information in ipv4 format`			   |
+|ip -6 addr 			   |`Information in ipv6 format`			   |
+|ip link set enp0s3 down   |`Turn off interface` 					   |
+|ip link set enp0s3 up     |`Turn on interface` 					   |
+|ethtool enp0s3 		   |`Detailed information about the interface` |
 
 > #### NetworkManager
 
 |Command    	      									    |Explanation          	   						 |
 |-----------------------------------------------------------|------------------------------------------------|
-|nm-connecion-editor 									    |`start NetworkManager GUI` 				     |
-|nmcli device 												|`list available devices` 						 |
-|nmcli connection 											|`list connected devices` 						 |
-|nmcli connection down MyEthernet 							|`turn off MyEthernet device` 					 |
-|nmcli connection up MyEthernet 							|`turn on MyEthernet device` 					 |
-|nmcli connection show ec12d91a-18a6-3a37-8f22-3934f47a6631 |`show configuration of device with uuid` 		 |
-|nmcli connection edit ec12d91a-18a6-3a37-8f22-3934f47a6631 |`edit configuration of device with uuid` 		 |
-|nmcli > describe connection.id 							|`describe configuration item` 					 |
-|nmcli > set connection.id MyEthernet 						|`set configuration item` 						 |
-|nmcli > remove ipv4.addresses 								|`remove configured item` 						 |
-|nmcli > set ipv4.addresses  10.0.2.8/24 					|`set ipv4 address` 							 |
-|nmcli > set ipv4.gateway  10.0.2.1 						|`set gateway`									 |
-|nmcli > set ipv4.dns 10.0.2.1	 							|`set dns`  									 |
-|nmcli > save 												|`save changes` 								 |
-|nmcli radio wifi 											|`show wifi device` 						     |
-|nmcli radio wifi on 										|`turn on wifi`									 |
-|nmcli radio wifi off 										|`turn off wifi` 								 |
-|nmcli dev wifi list 										|`list available networks` 						 |
-|nmcli dev wifi connect wifi-name password "wifi-password"  |`connect to wireless network with password`     |
+|nm-connecion-editor 									    |`Start NetworkManager GUI` 				     |
+|nmcli device 												|`List available devices` 						 |
+|nmcli connection 											|`List connected devices` 						 |
+|nmcli connection down MyEthernet 							|`Turn off MyEthernet device` 					 |
+|nmcli connection up MyEthernet 							|`Turn on MyEthernet device` 					 |
+|nmcli connection show ec12d91a-18a6-3a37-8f22-3934f47a6631 |`Show configuration of device with uuid` 		 |
+|nmcli connection edit ec12d91a-18a6-3a37-8f22-3934f47a6631 |`Edit configuration of device with uuid` 		 |
+|nmcli > describe connection.id 							|`Describe configuration item` 					 |
+|nmcli > set connection.id MyEthernet 						|`Set configuration item` 						 |
+|nmcli > remove ipv4.addresses 								|`Remove configured item` 						 |
+|nmcli > set ipv4.addresses  10.0.2.8/24 					|`Set ipv4 address` 							 |
+|nmcli > set ipv4.gateway  10.0.2.1 						|`Set gateway`									 |
+|nmcli > set ipv4.dns 10.0.2.1	 							|`Set dns`  									 |
+|nmcli > save 												|`Save changes` 								 |
+|nmcli radio wifi 											|`Show wifi device` 						     |
+|nmcli radio wifi on 										|`Turn on wifi`									 |
+|nmcli radio wifi off 										|`Turn off wifi` 								 |
+|nmcli dev wifi list 										|`List available networks` 						 |
+|nmcli dev wifi connect wifi-name password "wifi-password"  |`Connect to wireless network with password`     |
 
 > #### Firewalld
 
 |Command    	      			   							   |Explanation          	   		  		   |
 |--------------------------------------------------------------|-------------------------------------------|
-|firewall-config 											   |`start firewall GUI` 					   |
-|firewall-cmd --remove-service=http 						   |`remove item from firewall via service`    |
-|firewall-cmd --add-service=pop3s 							   |`add item to firewall via service`		   | 
-|firewall-cmd --zone=public --add-port=4545/tcp --permanent    |`add item to firewall via port` 		   | 
-|firewall-cmd --zone=public --remove-port=4545/tcp --permanent |`remove item from firewall via port`	   |
-|firewall-cmd --list-all 									   |`get complete list` 					   |
-|firewall-cmd --list-services 								   |`get list of assigned services` 		   |
-|firewall-cmd --list-all-zones 								   |`get complete list for all zones`		   |
-|firewall-cmd --get-zones 									   |`get list of zones`						   |
-|firewall-cmd --get-services 								   |`get list of services` 					   | 
-|firewall-cmd --get-default-zone					  		   |`get default zone` 						   |
-|firewall-cmd --set-default-zone=work     					   |`set default zone` 						   |
-|firewall-cmd --get-active-zones          					   |`get active zones`						   |
-|firewall-cmd --get-zone-of-interface=enp0s3 				   |`get zone by interface` 				   |
-|firewall-cmd --zone=work --add-interface=enp0s3 			   |`set zone for interface` 				   |	
-|firewall-cmd --reload 										   |`make changes permanent if added via port` |
-|firewall-cmd --runtime-to-permanent 						   |`change runtime configurtion to permanent` |
+|firewall-config 											   |`Start firewall GUI` 					   |
+|firewall-cmd --remove-service=http 						   |`Remove item from firewall via service`    |
+|firewall-cmd --add-service=pop3s 							   |`Add item to firewall via service`		   | 
+|firewall-cmd --zone=public --add-port=4545/tcp --permanent    |`Add item to firewall via port` 		   | 
+|firewall-cmd --zone=public --remove-port=4545/tcp --permanent |`Remove item from firewall via port`	   |
+|firewall-cmd --list-all 									   |`Get complete list` 					   |
+|firewall-cmd --list-services 								   |`Get list of assigned services` 		   |
+|firewall-cmd --list-all-zones 								   |`Get complete list for all zones`		   |
+|firewall-cmd --get-zones 									   |`Get list of zones`						   |
+|firewall-cmd --get-services 								   |`Get list of services` 					   | 
+|firewall-cmd --get-default-zone					  		   |`Get default zone` 						   |
+|firewall-cmd --set-default-zone=work     					   |`Set default zone` 						   |
+|firewall-cmd --get-active-zones          					   |`Get active zones`						   |
+|firewall-cmd --get-zone-of-interface=enp0s3 				   |`Get zone by interface` 				   |
+|firewall-cmd --zone=work --add-interface=enp0s3 			   |`Set zone for interface` 				   |	
+|firewall-cmd --reload 										   |`Make changes permanent if added via port` |
+|firewall-cmd --runtime-to-permanent 						   |`Change runtime configurtion to permanent` |
 
 > #### Netstat and SS
 
 |Command      |Explanation          	|
 |-------------|-------------------------|
-|ss -tln 	  |`listening connections` 	|
-|ss -tn 	  |`established connections`|
-|netstat -tln |`listening connections` 	|
-|netstat -tn  |`established connections`|
+|ss -tln 	  |`Listening connections` 	|
+|ss -tn 	  |`Established connections`|
+|netstat -tln |`Listening connections` 	|
+|netstat -tn  |`Established connections`|
 
 
 ## User management
@@ -807,12 +810,12 @@ Remote CLI protocols:
 
 |Command      			   							   |Explanation    	   						       |
 |------------------------------------------------------|-----------------------------------------------|
-|apt install openssh-server 				    	   |`install package to be able to connect via shh`|
-|apt install xrdp 									   |`install package to be able to connect via rdp`|
-|firewall-cmd --add-service=ssh 					   |`enable ssh on firewall` 					   |
-|firewall-cmd --permament --zone=public --port=3389/tcp|`enable xrd protocol on firewall` 			   |
-|firewall-cmd --reload 								   |`apply firewall changes` 					   |
-|ifconfig 											   |`show ip address` 							   |
+|apt install openssh-server 				    	   |`Install package to be able to connect via shh`|
+|apt install xrdp 									   |`Install package to be able to connect via rdp`|
+|firewall-cmd --add-service=ssh 					   |`Enable ssh on firewall` 					   |
+|firewall-cmd --permament --zone=public --port=3389/tcp|`Enable xrd protocol on firewall` 			   |
+|firewall-cmd --reload 								   |`Apply firewall changes` 					   |
+|ifconfig 											   |`Show ip address` 							   |
 
 
 ## Bash programing
