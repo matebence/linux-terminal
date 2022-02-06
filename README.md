@@ -239,16 +239,16 @@
 
 > vim /etc/security/pwquality.conf (Password credit system)
 
-difok = 5 			-> number of character that must nt be in old password
-minlen = 9 			-> minimum size for the new password
-dcredit = 1 		-> maximum credit for using digits
-ucredit = 1 		-> maximum credit for using uppercase charaters
-lcredit = 1			-> maximum credit for using lowercase charaters
-ocredit = 1			-> maximum credit for using other characters
-minclass = 1		-> min number of required classes of chaters
-maxrepeat = 0		-> maximum number of consecutive same characters
-gecoscheck = 0		-> check for words from the comment field longer than 3 chracter in straight or reversed form
-maxclassrepeat = 0	-> maximum nubmer if consecutive character of the same class
+	difok = 5 			-> number of character that must nt be in old password
+	minlen = 9 			-> minimum size for the new password
+	dcredit = 1 		-> maximum credit for using digits
+	ucredit = 1 		-> maximum credit for using uppercase charaters
+	lcredit = 1			-> maximum credit for using lowercase charaters
+	ocredit = 1			-> maximum credit for using other characters
+	minclass = 1		-> min number of required classes of chaters
+	maxrepeat = 0		-> maximum number of consecutive same characters
+	gecoscheck = 0		-> check for words from the comment field longer than 3 chracter in straight or reversed form
+	maxclassrepeat = 0	-> maximum nubmer if consecutive character of the same class
 
 > #### User management commands (most of the changes require password change or relogin)
 
