@@ -1,4 +1,3 @@
-
 ## Linux Directory structure
 - /
 	- bin/
@@ -66,6 +65,15 @@
 	PS1
 	PWD
 	USER
+
+
+## Aliases
+
+|Command                 	|Explanation                    |
+|---------------------------|-------------------------------|
+|alias         				|`Show aliases`                 |
+|alias showContent="ls -lha"|`Create new alias`             |
+|unalias showContent        |`Remove alias` 	            |
 
 
 ## Directories and link
@@ -161,6 +169,126 @@
 |restorecon httpd.conf           					 |`Restore context`    			   |
 |umask -S  	           								 |`Show default permissions`	   |
 |umask -S 0022  	           						 |`Set temp default permissions`   |
+
+> #### ACL(Access control list)
+
+|Command                      						 |Explanation   		     			  |
+|----------------------------------------------------|----------------------------------------|
+|getfacl aclfile.txt 								 |`Show acl for file` 					  |
+|ls -l 												 |`The + symbol shows that there is a acl`|
+|setfacl -m user::rwx aclfile 				         |`Set facl for all users` 				  |
+|setfacl -m group::rwx aclfile 				         |`Set facl for all groups` 			  |
+|setfacl -m mask::rwx aclfile 				         |`Set facl for mask`					  |
+|setfacl -m other::rwx aclfile 				         |`Set facl for others`					  |
+|setfacl -m user:root:rwx aclfile 			         |`Set facl for user root`				  |
+|setfacl -m user:ecneb:rwx aclfile 			         |`Set facl for user ecneb`				  |
+|setfacl -m group:sudo:rwx aclfile			         |`Set facl for group sudo`				  |
+|setfacl -m group:marketing:rwx aclfile		         |`Set fac; for group marketing`		  |
+|setfacl -R -m group:accounting:rwx dir1 			 |`Set default ACL` 			 		  |
+|setfacl -d -m group:accounting:rwx dir1 		     |`Set ACL for any future files` 		  |
+|setfacl -x group:root acldeldir/	 				 |`Delete group` 					      |
+|setfacl -x root acldeldir/ 			 			 |`Delete user` 						  |
+|setfacl -k acldeldir/ 				 				 |`Delete defaults` 					  |
+|setfacl -b acldeldir/ 				 				 |`Delete everything` 					  |
+|getfacl file1.txt | setfacl --set-file=- file2.txt  |`Copy ACL`  			 				  |
+|getfacl -c file1.txt > acls.txt 					 |`Save ACL to file` 	 		 		  |
+|setfacl -M acls.txt file.txt 		  				 |`Assigning via file` 	 		 		  |
+
+
+## User management
+
+- Linux supports many different users logged in at the same time.
+- And administrator can add multiple users to a group and then give that group specific access to resources.
+- Every user has a user name and a numeric user ID.
+- Every group has a group name and a numeric group ID.
+- Every user belongs to only one primary group.
+- In linux every user has their own primary group with their name. (or the group is called users)
+	
+> less /etc/passwd
+
+|User name|Password encoding type|Numeric user id (0-999 = System accounts) (1000+ = User accounts)|Primary group id number|Comment field|Home directory|Default login shell|
+|---------|----------------------|-----------------------------------------------------------------|-----------------------|-------------|--------------|-------------------|
+|root     |x 				     |0 															   |0 					   |root 		 |/root 		|/bin/bash  		|	
+
+> less /etc/shadow
+
+|User name|Password hash						|Number of days between 1/1/1970|Number of days beffore password can change|Number of days before password be changed|Number of days to warn before password expires|Number of days after the password expires that account is disabled|Number of days between 1/1/1970 and the date the account was disabled|Reserved for future|
+|---------|-------------------------------------|-------------------------------|------------------------------------------|-----------------------------------------|----------------------------------------------|------------------------------------------------------------------|---------------------------------------------------------------------|-------------------|
+|grant     |$1$E09Egacf$asd4564dwqF.ADW465fds/ 	|17176 							|0 					   					   |99999 		 							 |7 											|7  															   |2																	 | 					 |	
+	
+> less /etc/group
+
+|Group name|Password encoding type or placeholder for password in /etc/gshadow|Group id number|Group members|
+|----------|------------------------------------------------------------------|---------------|-------------|
+|users     |x 				     											  |100		      |grant,ted	|	
+
+> less /etc/gshadow
+
+|Group name, Has to match name in /etc/group|Password hash			|Group admin, can change group password, can add memebers|Group members, can change to the group without a password|
+|-------------------------------------------|-----------------------|--------------------------------------------------------|---------------------------------------------------------|
+|accounting    								|$1$FSA5456F.sdsaFDW423 |grant											 	     |ecneb,bob												   |	
+
+> hash types ($1$FSA5456F.sdsaFDW423)
+
+|Value      		    |Hash 	         |
+|-----------------------|----------------|
+|1 						|MD5  			 |
+|2a or 2y 			    |Blowfish 		 |
+|5 						|SHA256 		 |
+|6 						|SHA512 		 |
+
+> vim /etc/security/pwquality.conf (Password credit system)
+
+difok = 5 			-> number of character that must nt be in old password
+minlen = 9 			-> minimum size for the new password
+dcredit = 1 		-> maximum credit for using digits
+ucredit = 1 		-> maximum credit for using uppercase charaters
+lcredit = 1			-> maximum credit for using lowercase charaters
+ocredit = 1			-> maximum credit for using other characters
+minclass = 1		-> min number of required classes of chaters
+maxrepeat = 0		-> maximum number of consecutive same characters
+gecoscheck = 0		-> check for words from the comment field longer than 3 chracter in straight or reversed form
+maxclassrepeat = 0	-> maximum nubmer if consecutive character of the same class
+
+> #### User management commands (most of the changes require password change or relogin)
+
+|Command      		    					|Explanation          																						         |
+|-------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+|sudo pwconv           						|`enable shadow suite for users`																			         |
+|sudo unpwconv 								|`disable shadow suite for users (this way we will be able to see the hash in passwd just x)`  				         |
+|sudo grpconv								|`enable shadow suite for groups`																			         |
+|sudo ungrpconv 							|`disable shadow suite for groups (this way we will be able to see the hash in group not just x)`			         |
+|sudo authconfig --passalgo=sha512 --update |`change hash type to sha512` 																				         |
+|cat /etc/login.defs  					    |`check if it has been changed to sha512` 																	         |
+|change -d 0 ecneb							|`Number of days bettween 1/1/1970 and when password last changed. Setting to 0 forces password change on next login`|
+|change --expiredate 2017-10-25 ecneb		|`The date that user's account will expire` 																		 |
+|change --inactive 7 ecneb					|`Number of days inactivity after password expiration before the account is locked` 							     |
+|change -m ecneb							|`Minimum number of days bettween password changes. Set to 0 user may change password at any time`					 |
+|change -M ecneb							|`Maximum nubmer of days password is valid` 																		 |
+|change -W ecneb							|`Number of days of warning before a password change is required`													 |
+|sudo adduser ecneb 						|`Add user via wizard` 																							 	 |
+|sudo useradd ecneb  						|`Add user` 																										 |
+|sudo userdel ecneb 						|`Delete user`																					  					 |
+|sudo usermod -L ecneb						|`Lock user account`																							     |
+|sudo usermod -U ecneb  					|`Unlock user account`																								 |
+|sudo passwd ecneb 							|`Set password for user ecneb`																						 |
+|sudo groupadd -g 1050 accounting 	 		|`Create group with ID`																								 |
+|sudo groupmod -g 1051 accounting 			|`Change group id on group accounting`																				 |
+|sudo gpasswd -a grant accounting   		|`Add grant to the group accounting`																				 |
+|sudo groupdel accounting 					|`Delete group accountding`																							 |
+|sudo gpasswd accounting 		 			|`Add password to the group`																				         |
+
+## Switch user & sudoers
+
+|Command      		    |Explanation          			   |
+|-----------------------|----------------------------------|
+|sudo command           |`Run command as root` 		       |
+|sudo -u root command   |`Run command as root` 		       |
+|sudo -u ecneb command  |`Run as ecneb` 				   |
+|sudo -s                |`Start shell as root` 			   |
+|sudo su                |`Switch to the super user account`|
+|sudo su ecneb         	|`Switch to the ecneb account`	   |
+|usermod -aG sudo ecneb	|`Make ecneb a sudoer` 			   |
 
 
 ## Deleting, copying, moving, renaming, compress and creating archives
@@ -346,6 +474,8 @@ Examples: *.txt, a*, a*.txt, ?.txt, a?, a?.txt, ca[nt]*, [!aeio]*
 
 |Command       																  												|Explanation                        |
 |---------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
+|ping 192.168.99.100:8080													  												|`send packets to hosts`            |
+|telnet 192.168.99.100 8080													  												|`interface to TELNET protocol`     |
 |wget 127.0.0.1/main.txt													  												|`Connect via ssh`                  |
 |curl 'http:/example.com'																									|`Simple GET request`               |
 |curl -o output.html 'http:/example.com'																					|`Send request to output`           |
@@ -481,13 +611,42 @@ The software can be delivered in tree primary ways:
 
 ## Shell history
 
-|Command       |Explanation                       |
-|--------------|----------------------------------|
-|history	   |`Displays the shell history`     |
+|Command        |Explanation                       			   |
+|---------------|----------------------------------------------|
+|history	    |`Displays the shell history`      			   |
+|!!             |`Repeat the previus command` 				   |
+|!N             |`Repeat the command at line number in history |
+|!string        |`Repeat the most recent command 			   |
+
+|Keys        |Explanation      |
+|------------|-----------------|
+|ctrl r      |`Search` 		   |
+|ctrl g      |`Cancel search`  |
+|tab         |`Auto complete`  |
+
+> #### Customize shell
 
 	vi ~/.bash_history
 	vi ~/.history
 	vi ~/.histfile
+
+	vi ~/.bashrc
+	PS1="MyTestPrompt> "
+	PS1="\u@\h \$ "
+	source ~/.bashrc
+	echo $PS1
+
+|Mappers     |Explanation      					   |
+|------------|-------------------------------------|
+|\d 		 |Date 							       |
+|\H 		 |Host name 					       |
+|\n 		 |New line 							   |
+|\@ 		 |Current time in 12hour 			   |
+|\A 		 |Current time in 24hour 			   |
+|\u 		 |Username of the current user 		   |
+|\w 		 |Current working directory 		   |
+|\W 		 |Basename of current working directory|
+|\$ 		 |UID 								   |
 
 
 ## Schedulink task
@@ -792,10 +951,6 @@ crontab file
 |netstat -tn  |`Established connections`|
 
 
-## User management
-
-
-
 ## Connect To Remote Desktop
 
 Remote Desktop Protocol:
@@ -818,13 +973,14 @@ Remote CLI protocols:
 |ifconfig 											   |`Show ip address` 							   |
 
 
-## Bash programing
-
-
 ## AWK
 
 
 ## SED
 
 
+## Bash programing
+
+
 ## Server management
+
