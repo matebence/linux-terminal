@@ -203,32 +203,8 @@
 - Every group has a group name and a numeric group ID.
 - Every user belongs to only one primary group.
 - In linux every user has their own primary group with their name. (or the group is called users)
-	
-> less /etc/passwd
 
-|User name|Password encoding type|Numeric user id (0-999 = System accounts) (1000+ = User accounts)|Primary group id number|Comment field|Home directory|Default login shell|
-|---------|----------------------|-----------------------------------------------------------------|-----------------------|-------------|--------------|-------------------|
-|root     |x 				     |0 															   |0 					   |root 		 |/root 		|/bin/bash  		|	
-
-> less /etc/shadow
-
-|User name|Password hash						|Number of days between 1/1/1970|Number of days beffore password can change|Number of days before password be changed|Number of days to warn before password expires|Number of days after the password expires that account is disabled|Number of days between 1/1/1970 and the date the account was disabled|Reserved for future|
-|---------|-------------------------------------|-------------------------------|------------------------------------------|-----------------------------------------|----------------------------------------------|------------------------------------------------------------------|---------------------------------------------------------------------|-------------------|
-|grant     |$1$E09Egacf$asd4564dwqF.ADW465fds/ 	|17176 							|0 					   					   |99999 		 							 |7 											|7  															   |2																	 | 					 |	
-	
-> less /etc/group
-
-|Group name|Password encoding type or placeholder for password in /etc/gshadow|Group id number|Group members|
-|----------|------------------------------------------------------------------|---------------|-------------|
-|users     |x 				     											  |100		      |grant,ted	|	
-
-> less /etc/gshadow
-
-|Group name, Has to match name in /etc/group|Password hash			|Group admin, can change group password, can add memebers|Group members, can change to the group without a password|
-|-------------------------------------------|-----------------------|--------------------------------------------------------|---------------------------------------------------------|
-|accounting    								|$1$FSA5456F.sdsaFDW423 |grant											 	     |ecneb,bob												   |	
-
-> hash types ($1$FSA5456F.sdsaFDW423)
+> #### hash types ($1$FSA5456F.sdsaFDW423)
 
 |Value      		    |Hash 	         |
 |-----------------------|----------------|
@@ -237,18 +213,42 @@
 |5 						|SHA256 		 |
 |6 						|SHA512 		 |
 
-> vim /etc/security/pwquality.conf (Password credit system)
+> #### less /etc/passwd
 
-	difok = 5           -> number of character that must nt be in old password
-	minlen = 9          -> minimum size for the new password
-	dcredit = 1 		-> maximum credit for using digits
-	ucredit = 1 		-> maximum credit for using uppercase charaters
-	lcredit = 1         -> maximum credit for using lowercase charaters
-	ocredit = 1         -> maximum credit for using other characters
-	minclass = 1		-> min number of required classes of chaters
-	maxrepeat = 0		-> maximum number of consecutive same characters
-	gecoscheck = 0		-> check for words from the comment field longer than 3 chracter in straight or reversed form
-	maxclassrepeat = 0	-> maximum nubmer if consecutive character of the same class
+|User name|Password encoding type|Numeric user id (0-999 = System accounts) (1000+ = User accounts)|Primary group id number|Comment field|Home directory|Default login shell|
+|---------|----------------------|-----------------------------------------------------------------|-----------------------|-------------|--------------|-------------------|
+|root     |x 				     |0 															   |0 					   |root 		 |/root 		|/bin/bash  		|	
+
+> #### less /etc/shadow
+
+|User name|Password hash						|Number of days between 1/1/1970|Number of days beffore password can change|Number of days before password be changed|Number of days to warn before password expires|Number of days after the password expires that account is disabled|Number of days between 1/1/1970 and the date the account was disabled|Reserved for future|
+|---------|-------------------------------------|-------------------------------|------------------------------------------|-----------------------------------------|----------------------------------------------|------------------------------------------------------------------|---------------------------------------------------------------------|-------------------|
+|grant     |$1$E09Egacf$asd4564dwqF.ADW465fds/ 	|17176 							|0 					   					   |99999 		 							 |7 											|7  															   |2																	 | 					 |	
+	
+> #### less /etc/group
+
+|Group name|Password encoding type or placeholder for password in /etc/gshadow|Group id number|Group members|
+|----------|------------------------------------------------------------------|---------------|-------------|
+|users     |x 				     											  |100		      |grant,ted	|	
+
+> #### less /etc/gshadow
+
+|Group name, Has to match name in /etc/group|Password hash			|Group admin, can change group password, can add memebers|Group members, can change to the group without a password|
+|-------------------------------------------|-----------------------|--------------------------------------------------------|---------------------------------------------------------|
+|accounting    								|$1$FSA5456F.sdsaFDW423 |grant											 	     |ecneb,bob												   |	
+
+> #### vim /etc/security/pwquality.conf (Password credit system)
+
+	difok = 5					-> number of character that must nt be in old password
+	minlen = 9					-> minimum size for the new password
+	dcredit = 1					-> maximum credit for using digits
+	ucredit = 1					-> maximum credit for using uppercase charaters
+	lcredit = 1					-> maximum credit for using lowercase charaters
+	ocredit = 1					-> maximum credit for using other characters
+	minclass = 1				-> min number of required classes of chaters
+	maxrepeat = 0				-> maximum number of consecutive same characters
+	gecoscheck = 0				-> check for words from the comment field longer than 3 chracter in straight or reversed form
+	maxclassrepeat = 0			-> maximum nubmer if consecutive character of the same class
 
 > #### User management commands (most of the changes require password change or relogin)
 
