@@ -1440,10 +1440,10 @@ done
 
 |Script variables	   |Explanation    	   						  |
 |----------------------|------------------------------------------|
-|set -u		    	   |`Reports useage of unset variables`		  |
+|set -u		    	   |`Enables reporting of unset variables`	  |
+|set +u		    	   |`Disables reporting of unset variables`	  |
 |set -x		    	   |`Activating tracing`			  		  |
 |set +x		    	   |`Deactivating tracing`			 		  |
-|set +u		    	   |`Disables reporting of unset variables`	  |
 
 
 ## Server management
