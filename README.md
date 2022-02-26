@@ -1036,8 +1036,8 @@ echo $((e-=3))
 
 |Command      			   |Explanation    	   					  |
 |--------------------------|--------------------------------------|
-|()				    	   |`New scope, result will be lost`|
-|{}				    	   |`Same scope, just grouping`|
+|()				    	   |`New scope, result will be lost`	  |
+|{}				    	   |`Same scope, just grouping`           |
 
 	a=1 		a=1
 	(			{
@@ -1432,11 +1432,11 @@ done
 |---------------------------------|-----------------------------------------------------|
 |bash -x script.sh		    	  |`Echoing commands after processing`			  	    |
 |bash -n script.sh		    	  |`Do not execute script, just check for syntax errors`|
-|ls | tee my.log | grep -i file	  |`Catch outpout from pipe and save it to file`		|
+|ls \| tee my.log \| grep -i file |`Catch outpout from pipe and save it to file`		|
 |source script.sh 		   		  |`Making all variables and function avaible in bash`	|
-|export a 		 		   		  |`Export variable for another bash window`	|
-|export -f myFunction	   		  |`Export function for another bash window`	|
-|export 		 		   		  |`List of exported items`	|
+|export a 		 		   		  |`Export variable for another bash window`			|
+|export -f myFunction	   		  |`Export function for another bash window`			|
+|export 		 		   		  |`List of exported items`							    |
 
 |Script variables	   |Explanation    	   						  |
 |----------------------|------------------------------------------|
