@@ -981,6 +981,470 @@ Remote CLI protocols:
 
 ## Bash programing
 
+Every bash script should start with #!/bin/bash
+- #! = Hashbang or Shebang
+- /bin/bash = path to the bash executable
+
+We can execute the bash scripts via:
+- ./script.sh (chmod +x scripts.sh)
+- sh scripts.sh
+- bash scripts.sh
+- script.sh (script must be in /usr/bin or on the $PATH variable)
+
+> #### String interpretation and variables
+
+```bash
+#!/bin/bash
+
+name="ecneb"
+echo "hello $name !"
+unset $name
+```
+
+> #### Command substation
+
+```bash
+#!/bin/bash
+
+d=$(pwd)
+echo $d
+```
+
+> #### Working with numbers
+
+|Command      			   			   |Explanation    	   					  |
+|--------------------------------------|--------------------------------------|
+|((expression))				    	   |`Numbers are placed inside perentesis`|
+
+```bash
+#!/bin/bash
+
+d=2
+e=$((d+2))
+echo $e
+((e++))
+echo $e
+((e--))
+echo $e
+echo $((e+=5))
+echo $((e*=3))
+echo $((e/=3))
+echo $((e-=3))
+```
+
+> #### Grouping
+
+|Command      			   |Explanation    	   					  |
+|--------------------------|--------------------------------------|
+|()				    	   |`New scope, result will be lost`|
+|()				    	   |`Same scope, just grouping`|
+
+	a=1 		a=1
+	(			{
+	a=2 		a=2
+	)			}
+	echo $a 	echo $a
+	//prints 1    //prints 2
+
+> #### Comparing values
+
+|Command      			   |Explanation    	   					  		  |
+|--------------------------|----------------------------------------------|
+|[[>]] 					   |`For String, where a is greater than b`       |
+|[[<]] 					   |`For String, where a is less than b`		  |
+|[[<=]] 				   |`For String, where a is less or equal to b`   |
+|[[>=]] 				   |`For String, where a is greater or equal to b`|
+|[[==]] 				   |`For String, where a is equal to b`           |
+|[[!=]] 				   |`For String, where a is not equal to b`		  |
+|[[-lt]] 				   |`For Number, where a is less than b`		  |
+|[[-gt]] 				   |`For Number, where a is greater than b`		  |
+|[[-le]] 				   |`For Number, where a is less or equal to b`   |
+|[[-ge]] 				   |`For Number, where a is greater or equal to b`|
+|[[-eq]] 				   |`For Number, where a is equal to b` 		  |
+|[[-ne]] 				   |`For Number, where a is not equal to b`		  |
+|[[&&]] 				   |`Logical and operator`						  |
+|[[||]] 				   |`Logical or operator`						  |
+|[[!]] 					   |`Logical not operator`						  |
+|[[-z]] 				   |`Is null`									  |
+|[[-n]] 				   |`Is not null`								  |
+
+```bash
+#!/bin/bash
+
+[[ "cat" == "cat" ]]
+echo $?
+[[ "cat" == "dog" ]]
+echo $?
+
+[[ 5 -lt 6 ]]
+echo $?
+
+a=""
+b="cat"
+
+[[ -z $a && -n $b ]]
+echo $?
+```
+
+> #### Working with strings
+
+```bash
+#!/bin/bash
+
+# Declare options
+	declare -l lsString = "ABCdef"
+	declare -l usString = "ABCdef"
+	declare -r readonly = "A value"
+
+# Concatenation
+	a="hello"
+	b="world"
+	c=$a$b
+	echo $c
+
+# Lenght
+	echo ${#a}
+
+# Substring (from position 3 to the end)
+	d=${c:3}
+	echo $d
+
+# Substring (from position 3 to the 4 char)
+	d=${c:3:4}
+	echo $d
+	
+# Substring (starting from the end)
+	d=${c: -4}
+	echo $d
+
+# Replace
+	fruit="apple banana banana cherry"
+# Replace (it replaces the first banana)
+	echo ${fruit/banana/durian}
+# Replace (replace all instances of banana)
+	echo ${fruit//banana/durian}
+# Replace (replaces only if the word is on start )
+	echo ${fruit/#apple/durian}
+```
+
+> #### Using styles
+
+|Color 			   |Foreground    	   	  |Background 			 |
+|------------------|----------------------|----------------------|
+|`Black`		   |30					  |40 				     |
+|`Red`			   |31					  |41 				     |
+|`Green`		   |32					  |42 				     |
+|`Zellow`		   |33					  |43 				     |
+|`Blue`			   |34					  |44 				     |
+|`Magenta`		   |35					  |45 				     |
+|`Cyan`			   |36					  |46 				     |
+|`White`		   |37					  |47 				     |
+
+|Style 			   |Code    		  |   	  
+|------------------|------------------|
+|No style 		   |0 				  |
+|Bold 			   |1 				  |
+|Low intensity     |2 				  |
+|Underline 		   |4 				  |
+|Blinking 		   |5 				  |
+|Reverse 		   |7 				  |
+|Invisble 		   |8 				  |
+
+```bash
+#!/bin/bash
+
+echo -e '\033[37;40mWhite on Black\033[0m'
+echo -e '\033[5;37;40mWhite on Black and blinking\033[0m'
+
+flashered="\033[5;31;40m]"
+red="\033[31;40m"
+none="\033[0m"
+echo -e $flashred"ERROR: "$none$red"Something when wrong."$none
+```
+
+> #### Using printf
+
+```bash
+#!/bin/bash
+printf "Name:\t%s\nID:\t%04d\n" "ecneb" "12"
+```
+
+> #### Working with arrays
+
+```bash
+#!/bin/bash
+
+# Empty array
+	a=()
+	echo $a
+
+# Array
+	b=("apple", "banana", "cherry")
+	echo ${b[@]}
+
+# Add to the end
+	b+=("mango")
+	echo ${b[@]}
+
+# Add at index 5
+	b[5]="kiwi"
+	echo ${b[@]}
+
+# Print out the 2 index
+	echo ${b[2]}
+
+# Wole array
+	echo ${b[@]}
+
+# Last element
+	echo ${b[@]: -1}
+
+# Creating assosicate array
+	declare -A myarray
+	myarray[color]=blue
+	myarray["office building"]="HQ West"
+
+	echo ${myarray["office building"]}
+	echo ${myarray[color]}
+```
+
+> #### Working with files
+
+```bash
+#!/bin/bash
+
+echo "Some text" > file.txt
+echo "Some text 2" >> file.txt
+
+while read f; do
+	echo $f
+done < file.txt
+```
+
+> #### Using here docs
+
+```bash
+#!/bin/bash
+
+ssh -T ecneb@localhost << EOF
+echo "The current local working directory is: $PWD"
+echo "The current remote working directory is: \$PWD"
+EOF
+
+cat << EOF
+This is a
+multiline
+text
+string
+EOF
+```
+
+> #### Controling structure
+
+```bash
+#!/bin/bash
+
+n=2
+if [ $n -eq 1 ]; then
+    echo value of n is 1
+elif [ $n -eq 2 ]; then
+    echo value of n is 2
+else
+    echo value of n is other than 1 and 2
+fi
+
+
+a="dog"
+case $a in
+		cat) echo "Feline";;
+		dog|puppy) echo "Canines";;
+		*) echo "No match";;
+esac
+```
+
+> #### Using loops
+
+```bash
+#!/bin/bash
+
+# While loop
+	i = 0
+	while [ $i -le 10 ]
+	do
+		echo $i
+		((i+=1))
+	done
+
+# Until loop
+	j = 0
+	until [ $j -ge 10 ]
+	do
+		echo $j
+		((j+=1))
+	done
+
+# For loop
+	for k in 1 2 3
+	do
+		echo $k
+	done
+
+	for t in {1..100}
+	do
+		echo $t
+	done
+
+	arr=("apple", "banana", "cherry")
+	for q in ${arr[@]}
+	do
+		echo $q
+	done		
+```
+
+> #### Using functions
+
+```bash
+#!/bin/bash
+function greet {
+	echo "Hi there $1 nice $2"
+}
+
+echo "And now a greeting"
+greet ecneb Morning
+
+function numberthings {
+	for f in $@
+	do
+		echo  $f
+		((i+=1))
+	done
+}
+
+numberthings $(ls)
+```
+
+> #### Working with arguments
+
+```bash
+#!/bin/bash
+echo $1
+echo $2
+
+echo "There were $# arguments"		
+```
+- ./script.sh Apple Orange
+
+> #### Working with flags
+
+```bash
+#!/bin/bash
+while getopts u:p option
+	do
+	case $option in
+		u) user=$OPTARG;;
+		p) pass=$OPTARG;;
+		?) echo "I dont know what $OPTARG is??";;
+	esac
+done
+
+echo "User: $user / Password: $pass"
+```
+
+- ./script.sh -u ecneb -p password
+
+
+> #### Getting input from the user
+
+```bash
+#!/bin/bash
+
+# Newline prompt
+	echo "What is your name"
+	read name
+
+# Hidden prompt
+	echo "What is your password"
+	read -s pass
+
+# Inline prompt
+	read -p "What is your favorite animal?" animal
+
+# Select list
+	select animal in "cat" "dog"
+	do
+		echo "You selected $animal"
+		break
+	done
+
+echo $name
+echo $pass
+echo $animal
+
+# Act on answer
+	select option in "cat" "dog"
+	do
+		case $option in 
+			cat) echo "cats like to sleep";;
+			dog) echo "dogs like to play"
+			*) echo "Im not sure what is this"
+		esac
+	done
+
+# Force answer
+	read -p "Favorite animal?"
+	while [[ -z "$a"]]; do
+		read -p "I need an answers" a
+	done
+	echo "$a was selected "
+
+# Default answer
+	read -p "Favorite animal? [cat]"
+	while [[ -z "$a"]]; do
+		a="cat"
+	done
+	echo "$a was selected"
+```
+
+> #### Using trap, to handling exit or termination
+
+|Command      			   |Explanation    	   					  |
+|--------------------------|--------------------------------------|
+|kill -l		    	   |`List of signal options`			  |
+
+```bash
+#!/bin/bash
+trap "echo just got int; exit" INT
+trap "echo you cannot quit now" QUIT
+
+while
+true
+do
+	echo looping
+        du -m * 2>/dev/null     
+        echo sleeping
+        sleep 5
+done
+```
+
+> #### Debugging
+
+|Command      			   		  |Explanation    	   					  			    |
+|---------------------------------|-----------------------------------------------------|
+|bash -x script.sh		    	  |`Echoing commands after processing`			  	    |
+|bash -n script.sh		    	  |`Do not execute script, just check for syntax errors`|
+|ls | tee my.log | grep -i file	  |`Catch outpout from pipe and save it to file`		|
+|source script.sh 		   		  |`Making all variables and function avaible in bash`	|
+|export a 		 		   		  |`Export variable for another bash window`	|
+|export -f myFunction	   		  |`Export function for another bash window`	|
+|export 		 		   		  |`List of exported items`	|
+
+|Script variables	   |Explanation    	   						  |
+|----------------------|------------------------------------------|
+|set -u		    	   |`Reports useage of unset variables`		  |
+|set -x		    	   |`Activating tracing`			  		  |
+|set +x		    	   |`Deactivating tracing`			 		  |
+|set +u		    	   |`Disables reporting of unset variables`	  |
+
 
 ## Server management
 
