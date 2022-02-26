@@ -1433,7 +1433,7 @@ done
 |bash -x script.sh		    	  |`Echoing commands after processing`			  	    |
 |bash -n script.sh		    	  |`Do not execute script, just check for syntax errors`|
 |ls \| tee my.log \| grep -i file |`Catch outpout from pipe and save it to file`		|
-|source script.sh 		   		  |`Making all variables and function avaible in bash`	|
+|source script.sh 		   		  |`Making all variables and function available in bash`|
 |export a 		 		   		  |`Export variable for another bash window`			|
 |export -f myFunction	   		  |`Export function for another bash window`			|
 |export 		 		   		  |`List of exported items`							    |
