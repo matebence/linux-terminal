@@ -1037,7 +1037,7 @@ echo $((e-=3))
 |Command      			   |Explanation    	   					  |
 |--------------------------|--------------------------------------|
 |()				    	   |`New scope, result will be lost`|
-|()				    	   |`Same scope, just grouping`|
+|{}				    	   |`Same scope, just grouping`|
 
 	a=1 		a=1
 	(			{
