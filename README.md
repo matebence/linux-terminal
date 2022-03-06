@@ -479,9 +479,9 @@ Examples: *.txt, a*, a*.txt, ?.txt, a?, a?.txt, ca[nt]*, [!aeio]*
 |wget 127.0.0.1/main.txt													  												|`Connect via ssh`                  |
 |curl 'http:/example.com'																									|`Simple GET request`               |
 |curl -o output.html 'http:/example.com'																					|`Send request to output`           |
-|curl -X "POST" -d "name=John&surname=Doe" 'http:/example.com'																|`Send form data`                   |
-|curl -X "PUT" -d "{"name":"John","surname":"Doe"}" 'http:/example.com'														|`Send JSON`                        |
-|curl -XPOST -H 'Authorization: Bearer test' -H "Content-type: application/json" -d '{"name": "ecneb"}' 'http:/example.com' |`Using headers`                    |
+|curl -XPOST -d 'name=John&surname=Doe' 'http:/example.com'																|`Send form data`                   |
+|curl -XPUT -d '{"name":"John","surname":"Doe"}' 'http:/example.com'														|`Send JSON`                        |
+|curl -XPOST -H 'Authorization: Bearer test' -H 'Content-type: application/json' -d '{"name": "ecneb"}' 'http:/example.com' |`Using headers`                    |
 |curl -F 'img_avatar=@/home/petehouston/hello.txt' -F 'img_profile=@/home/petehouston/hello.txt' 'http:/example.com'		|`Sending files`                    |
 |ssh ecneb@127.0.0.1 														  												|`Connect via ssh` 			        |
 |exit 				 														  												|`Exit from ssh` 					|
