@@ -159,16 +159,17 @@
 
 > #### Commands for manipulation
 
-|Command                      						 |Explanation                      |
-|----------------------------------------------------|---------------------------------|
-|chmod u-r,g+w,o=rwx test.txt 				   	     |`Change permission via Strings`  |
-|chmod 777 test.txt           						 |`Change permission via Binaries` |
-|chown ecneb 	test.txt        					 |`Change owner of file`	       |
-|chgroup -R ecneb www        					 	 |`Change group of dir content`    |
-|chcon system_u:object_r:httpd_config_t:s0 httpd.conf|`Change context` 				   |
-|restorecon httpd.conf           					 |`Restore context`    			   |
-|umask -S  	           								 |`Show default permissions`	   |
-|umask -S 0022  	           						 |`Set temp default permissions`   |
+|Command                      						 |Explanation                      			   |
+|----------------------------------------------------|---------------------------------------------|
+|chmod u-r,g+w,o=rwx test.txt 				   	     |`Change permission via Strings`  			   |
+|chmod -R u-r,g+w,o=rwx test.txt 			   	     |`Change permission via Strings recursively`  |
+|chmod 777 test.txt           						 |`Change permission via Binaries` 			   |
+|chown ecneb 	test.txt        					 |`Change owner of file`	       			   |
+|chgroup -R ecneb www        					 	 |`Change group of dir content`    			   |
+|chcon system_u:object_r:httpd_config_t:s0 httpd.conf|`Change context` 				   			   |
+|restorecon httpd.conf           					 |`Restore context`    			   			   |
+|umask -S  	           								 |`Show default permissions`	   			   |
+|umask -S 0022  	           						 |`Set temp default permissions`   			   |
 
 > #### ACL(Access control list)
 
@@ -268,6 +269,7 @@
 |change -W ecneb							|`Number of days of warning before a password change is required`													 |
 |sudo adduser ecneb 						|`Add user via wizard` 																							 	 |
 |sudo useradd ecneb  						|`Add user` 																										 |
+|sudo useradd -m ecneb  					|`Add user and create home directory` 																			     |
 |sudo userdel ecneb 						|`Delete user`																					  					 |
 |sudo usermod -L ecneb						|`Lock user account`																							     |
 |sudo usermod -U ecneb  					|`Unlock user account`																								 |
@@ -329,16 +331,20 @@
 
 ## Reading files
 
-|Command             |Explanation                          |
-|--------------------|-------------------------------------|
-|nl test.sh			 |`Display scripts with line numbering`|
-|cat test.txt		 |`Display cotents of file`   		   |
-|more test.txt		 |`Browse to the file`   			   |
-|less test.txt		 |`Browse to the file`   			   |
-|head test.txt		 |`Output the beginning of the file`   |
-|tail test.txt		 |`Output the ending of the file`      |
-|tail -f test.txt	 |`Watch file changes` 				   |  
-|watch more test.txt |`Watch file changes with any command`|
+|Command              			  |Explanation                          			  |
+|---------------------------------|---------------------------------------------------|
+|nl test.sh			 		      |`Display scripts with line numbering`			  |
+|cat test.txt		 			  |`Display cotents of file`   		    			  |
+|more test.txt		 			  |`Browse to the file`   			    			  |
+|less test.txt		 			  |`Browse to the file`   			    			  |
+|head test.txt		 			  |`Output the beginning of the file`   			  |
+|tail test.txt		 			  |`Output the ending of the file`      			  |
+|tail -f test.txt	 			  |`Watch file changes` 							  |  
+|watch more test.txt 			  |`Watch file changes with any command`			  |
+|jq employee.json 				  |`Pretty format json`								  |
+|jq '.' employee.json 			  |`Pretty format json at root level` 				  |
+|jq '.workers' employee.json 	  |`Pretty format json at workers level`			  |
+|jq '.workers.name' employee.json |`Pretty format json at workers level (nested name)`|
 
 
 ## File editors
@@ -479,7 +485,7 @@ Examples: *.txt, a*, a*.txt, ?.txt, a?, a?.txt, ca[nt]*, [!aeio]*
 |wget 127.0.0.1/main.txt													  												|`Connect via ssh`                  |
 |curl 'http:/example.com'																									|`Simple GET request`               |
 |curl -o output.html 'http:/example.com'																					|`Send request to output`           |
-|curl -XPOST -d 'name=John&surname=Doe' 'http:/example.com'																|`Send form data`                   |
+|curl -XPOST -d 'name=John&surname=Doe' 'http:/example.com'																	|`Send form data`                   |
 |curl -XPUT -d '{"name":"John","surname":"Doe"}' 'http:/example.com'														|`Send JSON`                        |
 |curl -XPOST -H 'Authorization: Bearer test' -H 'Content-type: application/json' -d '{"name": "ecneb"}' 'http:/example.com' |`Using headers`                    |
 |curl -F 'img_avatar=@/home/petehouston/hello.txt' -F 'img_profile=@/home/petehouston/hello.txt' 'http:/example.com'		|`Sending files`                    |
