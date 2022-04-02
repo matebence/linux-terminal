@@ -484,6 +484,7 @@ Examples: *.txt, a*, a*.txt, ?.txt, a?, a?.txt, ca[nt]*, [!aeio]*
 |telnet 192.168.99.100 8080													  												|`interface to TELNET protocol`     |
 |wget 127.0.0.1/main.txt													  												|`Connect via ssh`                  |
 |curl 'http:/example.com'																									|`Simple GET request`               |
+|curl -v 'http:/example.com'																							    |`Show response headers`            |
 |curl -o output.html 'http:/example.com'																					|`Send request to output`           |
 |curl -XPOST -d 'name=John&surname=Doe' 'http:/example.com'																	|`Send form data`                   |
 |curl -XPUT -d '{"name":"John","surname":"Doe"}' 'http:/example.com'														|`Send JSON`                        |
@@ -1069,7 +1070,7 @@ echo $((e-=3))
 |[[-eq]] 				   |`For Number, where a is equal to b` 		  |
 |[[-ne]] 				   |`For Number, where a is not equal to b`		  |
 |[[&&]] 				   |`Logical and operator`						  |
-|[[||]] 				   |`Logical or operator`						  |
+|[[\|\|]] 				   |`Logical or operator`						  |
 |[[!]] 					   |`Logical not operator`						  |
 |[[-z]] 				   |`Is null`									  |
 |[[-n]] 				   |`Is not null`								  |
