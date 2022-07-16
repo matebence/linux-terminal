@@ -1142,7 +1142,7 @@ sed '/down/r down.txt' text.txt
 sed '1,3w top.txt' text.txt
 ```
 
-> ### Using grouping as a programs
+> ### Grouping (script program)
 
 ```bash
 # Search in lines from 3 to 6 
