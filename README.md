@@ -997,154 +997,154 @@ Purpose?
 
 > #### Replace the first line occurrence of the word 'old' with 'new' in the file 'text.txt'
 
-```
-sed 's/old/new/' text.txt
 ```bash
+sed 's/old/new/' text.txt
+```
 
 > #### Replace the all occurrence of the word 'old' with 'new' in the file 'text.txt'
 
-```
+```bash
 sed 's/old/new/g' text.txt
 
 # Non overlapping behaviour (it replaces one by one) 
 # abababababa
 # ---b---b---
 sed 's/aba/---/g'
-```bash
+```
 
 > #### Replace the all occurrence of the word 'old' with 'new' from input
 
-```
-sed 's/old/new/g'
 ```bash
+sed 's/old/new/g'
+```
 
 > #### Get source from 'text.txt' and then store it in 'output.txt'
 
-```
-sed 's/old/new/g' < text.txt > output.txt
 ```bash
+sed 's/old/new/g' < text.txt > output.txt
+```
 
 > #### Using pipe
 
-```
-wc text.txt | sed 's/old/new/g'
 ```bash
+wc text.txt | sed 's/old/new/g'
+```
 
 > #### Using regex (find ten, men and replace it with new) in a file called text.txt
 
-```
-sed 's/[tm]en/new/g' text.txt
 ```bash
+sed 's/[tm]en/new/g' text.txt
+```
 
 > #### Put 'the' into prentices '(the)'
 
-``` 
+```bash 
 sed 's/the/(&)/g'
-```bash
+```
 
 > #### Change the order from 'they were' to 'were they'
 
-```
-sed 's/\(they\) \(were\)/\2 \1/g'
 ```bash
+sed 's/\(they\) \(were\)/\2 \1/g'
+```
 
 > #### Using '-n' flag to hide output
 
-```
-sed -n 's/old/new/' text.txt
 ```bash
+sed -n 's/old/new/' text.txt
+```
 
 > #### Using '-n' flag to hide output and '[' mode to show only changed lines
 
-```
-sed -n 's/old/new/p' text.txt
 ```bash
+sed -n 's/old/new/p' text.txt
+```
 
 > #### Specifying multiple commands with '-e'
 
-```
-sed -e 's/up/UP/' -e 's/down/DOWN/' text.txt
 ```bash
+sed -e 's/up/UP/' -e 's/down/DOWN/' text.txt
+```
 
 > #### Specifying multiple commands with '-f'
 
-```
+```bash
 cat > script
 s/up/UP/
 s/down/DOWN/
 
 sed -f script text.txt
-```bash
+```
 
 > #### Print first line
 
-```
-sed '1p' text.txt
 ```bash
+sed '1p' text.txt
+```
 
 > #### Print last line
 
-```
-sed '$p' text.txt
 ```bash
+sed '$p' text.txt
+```
 
 > #### Print lines from '1' to '3'
 
-```
-sed '1,3p' text.txt
 ```bash
+sed '1,3p' text.txt
+```
 
 > #### Print lines from 'men' to 'end'
 
-```
-sed -n '/men/,/up/' text.txt
 ```bash
+sed -n '/men/,/up/' text.txt
+```
 
 > #### Delete all lines containing 'up'
 
-```
-sed 'up/d'
 ```bash
+sed 'up/d'
+```
 
 > #### Delete from 'men' to 'up'
 
-```
-sed '/men/,/up/d'
 ```bash
+sed '/men/,/up/d'
+```
 
 > #### Insert a line with content of 'up' to the lines which contains 'down'
 
-```
-sed '/down/ i\up\' text.txt
 ```bash
+sed '/down/ i\up\' text.txt
+```
 
 > #### Append a line with content of 'up' to the lines which contains 'down'
 
-```
-sed '/down/ a\up\' text.txt
 ```bash
+sed '/down/ a\up\' text.txt
+```
 
 > #### It replaces the line from 'top' to 'again' with our lines what we specify
 
-```
-sed '/top/,/again/ c\This just a test\' text.txt
 ```bash
+sed '/top/,/again/ c\This just a test\' text.txt
+```
 
 > #### It replaces the word 'down' with the content of the file 'down.txt'
 
-```
-sed '/down/r down.txt' text.txt
 ```bash
+sed '/down/r down.txt' text.txt
+```
 
 > #### It saves the lines from '1' to '3' into top.txt
 
-```
-sed '1,3w top.txt' text.txt
 ```bash
+sed '1,3w top.txt' text.txt
+```
 
 > ### Using grouping as a programs
 
-```
+```bash
 # Search in lines from 3 to 6 
 # Find the word 'marched'
 # get the next line
@@ -1161,7 +1161,7 @@ cat > script
 		s/$/))/
 	}
 }
-```bash
+```
 
 
 ## Bash programing
