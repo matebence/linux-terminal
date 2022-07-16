@@ -985,6 +985,184 @@ Remote CLI protocols:
 
 ## SED
 
+What?
+- A stream editor
+- Developed in Bell labs
+- Command line version of text editor ed
+
+Purpose?
+- Simple manipulations on line oriented text files
+- Most often used as a filter, often in shell scipts
+- It possible to write SED programs
+
+> #### Replace the first line occurrence of the word 'old' with 'new' in the file 'text.txt'
+
+```
+sed 's/old/new/' text.txt
+```bash
+
+> #### Replace the all occurrence of the word 'old' with 'new' in the file 'text.txt'
+
+```
+sed 's/old/new/g' text.txt
+
+# Non overlapping behaviour (it replaces one by one) 
+# abababababa
+# ---b---b---
+sed 's/aba/---/g'
+```bash
+
+> #### Replace the all occurrence of the word 'old' with 'new' from input
+
+```
+sed 's/old/new/g'
+```bash
+
+> #### Get source from 'text.txt' and then store it in 'output.txt'
+
+```
+sed 's/old/new/g' < text.txt > output.txt
+```bash
+
+> #### Using pipe
+
+```
+wc text.txt | sed 's/old/new/g'
+```bash
+
+> #### Using regex (find ten, men and replace it with new) in a file called text.txt
+
+```
+sed 's/[tm]en/new/g' text.txt
+```bash
+
+> #### Put 'the' into prentices '(the)'
+
+``` 
+sed 's/the/(&)/g'
+```bash
+
+> #### Change the order from 'they were' to 'were they'
+
+```
+sed 's/\(they\) \(were\)/\2 \1/g'
+```bash
+
+> #### Using '-n' flag to hide output
+
+```
+sed -n 's/old/new/' text.txt
+```bash
+
+> #### Using '-n' flag to hide output and '[' mode to show only changed lines
+
+```
+sed -n 's/old/new/p' text.txt
+```bash
+
+> #### Specifying multiple commands with '-e'
+
+```
+sed -e 's/up/UP/' -e 's/down/DOWN/' text.txt
+```bash
+
+> #### Specifying multiple commands with '-f'
+
+```
+cat > script
+s/up/UP/
+s/down/DOWN/
+
+sed -f script text.txt
+```bash
+
+> #### Print first line
+
+```
+sed '1p' text.txt
+```bash
+
+> #### Print last line
+
+```
+sed '$p' text.txt
+```bash
+
+> #### Print lines from '1' to '3'
+
+```
+sed '1,3p' text.txt
+```bash
+
+> #### Print lines from 'men' to 'end'
+
+```
+sed -n '/men/,/up/' text.txt
+```bash
+
+> #### Delete all lines containing 'up'
+
+```
+sed 'up/d'
+```bash
+
+> #### Delete from 'men' to 'up'
+
+```
+sed '/men/,/up/d'
+```bash
+
+> #### Insert a line with content of 'up' to the lines which contains 'down'
+
+```
+sed '/down/ i\up\' text.txt
+```bash
+
+> #### Append a line with content of 'up' to the lines which contains 'down'
+
+```
+sed '/down/ a\up\' text.txt
+```bash
+
+> #### It replaces the line from 'top' to 'again' with our lines what we specify
+
+```
+sed '/top/,/again/ c\This just a test\' text.txt
+```bash
+
+> #### It replaces the word 'down' with the content of the file 'down.txt'
+
+```
+sed '/down/r down.txt' text.txt
+```bash
+
+> #### It saves the lines from '1' to '3' into top.txt
+
+```
+sed '1,3w top.txt' text.txt
+```bash
+
+> ### Using grouping as a programs
+
+```
+# Search in lines from 3 to 6 
+# Find the word 'marched'
+# get the next line
+# add ((
+# get the next line
+# add ))
+
+cat > script
+3,6 {
+	/marched/ {
+		n
+		s/^/((/
+		n
+		s/$/))/
+	}
+}
+```bash
+
 
 ## Bash programing
 
