@@ -982,6 +982,188 @@ Remote CLI protocols:
 
 ## AWK
 
+What?
+- Simple data filterting CLI tool
+
+Purpose?
+- Simple manipulations on line oriented text files
+- Most often used as a filter, often in shell scipts
+
+Description
+- $0 - whole line
+- $1 - First element (column)
+- $2 - Second element (column)
+- RS - record seperator (row)
+- FS - field seperator (column)
+- OFS - output field seperator
+- ORS - output record seperator
+- NF  - field number
+- NR  - record number
+- FNR  - record number for the file
+- FILENAME - the filename
+
+Syntax
+- Math operators: + - * / % ^
+- Increment and decrement ++ --
+- Assigment operators: = += -= *= /= %= ^=
+- Comparison operators: ==, !=, <, <=, >, >=
+- Regular expressions comparison: ~ !~
+- Array subscript: []
+
+String functions
+- length([string])
+- index(string, target)
+- match(string regexp)
+- substr(string start [, length])
+
+Number functions
+- int(rant() *6) +1
+- srand([x])
+- sqrt()
+- sin()
+- cos()
+- atan2()
+- log()
+- exp()
+
+
+> #### Print only the 3 column
+
+```bash
+awk '{print $3}' text.txt
+```
+
+> #### Print the entire line
+
+```bash
+awk '{print $0}' text.txt
+```
+
+> #### Seperate column '2' and column '3' with ','
+
+```bash
+awk '{print $2 ", " $3}' text.txt
+```
+
+> #### Print the entire line with number of words
+
+```bash
+awk '{print NF, $0}' text.txt
+```
+
+> #### Find only line where we have the word 'up' (done via regex)
+
+```bash
+awk '/up/{print NF, $0}' text.txt
+```
+
+> #### Print lines where we have '6' words
+
+```bash
+awk 'NF==6{print NF, $0}' text.txt
+```
+
+> #### Searching for both 'up' and 'down' and print the word up and down
+
+```bash
+awk '/up/{print "UP:", NF, $0} /down/{print "DOWN:", NF, $0}' text.txt
+```
+
+> #### Read command from file
+
+```bash
+cat swap
+{print $2, $1}
+awk -f swap text.txt
+```
+
+> #### Use ',' instead of space
+
+```bash
+cat text.txt;
+one,two,three
+awkf -F , '{print $2}' text.txt
+
+#it can be even a regex
+awk -F '[,!] '{print $2}'
+```
+
+> #### Defining a variable
+
+```bash
+awk -v hi=HELLO 'print $1, hi'
+```
+
+> #### Using FS and RS
+
+```bash
+# First example
+cat onebigline.txt
+one,two,three!four,five,six!seven,eight,nine!ten,eleven,twelve$
+awk 'BEGIN{RS="!";FS=","} {print $2}' onebigline.txt
+
+# Second example
+awk 'BEGIN{RS="";FS="\n"} {name=$1;address=$2;citystatezip=$3; print name "," address "," cityzipstate}' multiaddress.txt
+```
+
+> #### Using predefined variables
+
+```bash
+awk 'NR==6 BEGIN{ORS="!"}{print NR, FILENAME, FNR, $0}' my.txt my2.txt my3.txt
+```
+
+> #### Defining variables
+
+```bash
+awk '{hello=$1; goodbey=$2; print hello, goodbey}'
+```
+
+> #### Working with operators and arrays
+
+```bash
+awk '{hello=$1; goodbey=$2; print hello, goodbey}'
+```
+
+> #### Using printf
+
+```bash
+awk '{printf("%s\t%s\t%d\n", $1, $2, $3)}' text.txt 
+```
+
+> #### Associative array
+
+```bash
+awk '{a["first"]=$1; a["two"]=$2; a["third"]=$3; print a["third"], a["two"], a["one"]'}
+```
+
+> #### Conditions
+
+```bash
+ cat shortlong.awk
+{ 
+	if ( NF<8 ) {
+		print "Short line:", $0 
+	} else { 
+		print "Long line:", $0 
+	} 
+}
+
+awk -f shortlong.awk text.txt
+ ```
+
+> #### Loops
+
+```bash
+cat loop.awk
+{
+	for ( i=1; i<=3; i++ ) {
+		print "Line " NR ", field " i ": " $i;
+	}
+}
+
+awk -f loop.awk text.txt
+ ```
+
 
 ## SED
 
