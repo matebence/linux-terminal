@@ -403,7 +403,7 @@
 |h 					  |Left one character	   				  |
 |l 					  |Right one character					  |	
 |w 					  |Right one word						  |
-|b 					  |Geft one word						  |
+|b 					  |Left one word						  |
 |^ 					  |Go to the begging of the line		  |
 |$ 					  |Go to the end of the line			  |
 |i 					  |Insert at the cursor position		  |
